@@ -1,15 +1,16 @@
 {
     "name": "tonsinn/img-navi-bundle",
     "type": "contao-bundle",
-    "description": "Animierte Bildnavigation für Contao 5: 2-6 Bild-Panels, die bei Hover bzw. Tap mit Überschrift, Text und Button aufklappen",
+    "description": "Animated image navigation for Contao 5 and 6 - 2 to 6 image panels that expand on hover or tap to reveal a headline, text and a call-to-action button.",
     "keywords": [
         "contao",
         "contao-bundle",
-        "bundle",
+        "contao5",
+        "contao6",
+        "content-element",
         "image",
         "navigation",
-        "content element",
-        "contao 5"
+        "twig"
     ],
     "license": "LGPL-3.0-or-later",
     "authors": [
