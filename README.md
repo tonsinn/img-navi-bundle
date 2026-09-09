@@ -38,7 +38,7 @@ Danach die **Datenbank aktualisieren** (Contao Manager → Wartung, oder
 |---|---|
 | Anordnung | Panels nebeneinander (horizontal) oder untereinander (vertikal) |
 | Höhe | Gesamthöhe in px, vh oder rem (Standard 600px) |
-| Überschrift im zugeklappten Zustand | Senkrecht gedreht (Standard) oder waagerecht mit Zeilenumbruch innerhalb des sichtbaren Streifens. Wirkt nur bei horizontaler Anordnung ab 768px — gestapelte Panels zeigen die Überschrift ohnehin waagerecht |
+| Überschrift im zugeklappten Zustand | Senkrecht gedreht (Standard) oder waagerecht mit Zeilenumbruch innerhalb des sichtbaren Streifens. Wirkt nur bei horizontaler Anordnung ab 768px — gestapelte Panels zeigen die Überschrift ohnehin waagerecht und umbrechend |
 | Zunächst geöffnetes Panel | Nummer des Panels, das beim Laden bereits offen ist. Beim Überfahren eines anderen Panels wechselt die Anzeige dorthin, beim Verlassen kehrt sie hierher zurück. Leer = alle Panels starten geschlossen |
 | Panel geöffnet lassen | Das zuletzt geöffnete Panel bleibt offen, wenn die Maus die Navigation verlässt |
 

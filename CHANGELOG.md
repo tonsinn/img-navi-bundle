@@ -18,6 +18,8 @@
   Navigation verlässt
 - Die Überschrift im zugeklappten Zustand wahlweise senkrecht gedreht
   (Standard) oder waagerecht mit Zeilenumbruch im sichtbaren Streifen
+- In der gestapelten Ansicht (unter 768px) bricht die Überschrift ebenfalls um,
+  statt seitlich aus dem Panel zu laufen und abgeschnitten zu werden
 
 #### Bedienung
 - Aufklappen per Hover auf Geräten mit Zeiger (Flex-Grow-Animation)

@@ -353,9 +353,18 @@
         max-height: none;
     }
 
+    /* Gestapelte Panels zeigen die Überschrift immer waagerecht. Ohne rechte
+       Begrenzung und Umbruch würden lange Überschriften seitlich aus dem
+       Panel laufen und vom overflow abgeschnitten. */
     .imgnav__label {
         left: 1rem;
+        right: 1rem;
         transform: translateY(-50%);
+        max-height: calc(var(--imgnav-collapsed) - 1rem);
+        overflow: hidden;
+        white-space: normal;
+        overflow-wrap: break-word;
+        hyphens: auto;
     }
 
     .imgnav__content {

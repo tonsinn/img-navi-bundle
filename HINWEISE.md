@@ -68,6 +68,12 @@ in CHANGELOG.md, offene Aufgaben in TODO.md.
   darüber abgeschaltet und dienen nur noch als Fallback ohne JavaScript. Neue
   Zustandslogik gehört deshalb ins Skript (`.is-active` / `.has-active`), nicht
   in zusätzliche `:hover`-Regeln.
+- **Die Beschriftung im zugeklappten Zustand muss in den sichtbaren Streifen
+  passen.** Senkrecht gedreht (Standard) läuft sie mit `white-space: nowrap`;
+  waagerecht — per Option ab 768px, in der gestapelten Ansicht immer — braucht
+  sie eine Breitenbegrenzung plus `overflow-wrap: break-word` und
+  `hyphens: auto`, sonst wird sie vom `overflow: hidden` des Panels
+  abgeschnitten.
 - **CSS/JS werden über `{% add … to stylesheets|body %}` eingebunden.** Im
   Backend gibt Contao diese Blöcke nicht aus — die Editor-Vorschau ist deshalb
   bewusst ohne Styles. Das ist Core-Verhalten, kein Fehler.
