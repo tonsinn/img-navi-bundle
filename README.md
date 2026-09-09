@@ -38,6 +38,7 @@ Danach die **Datenbank aktualisieren** (Contao Manager → Wartung, oder
 |---|---|
 | Anordnung | Panels nebeneinander (horizontal) oder untereinander (vertikal) |
 | Höhe | Gesamthöhe in px, vh oder rem (Standard 600px) |
+| Überschrift im zugeklappten Zustand | Senkrecht gedreht (Standard) oder waagerecht mit Zeilenumbruch innerhalb des sichtbaren Streifens. Wirkt nur bei horizontaler Anordnung ab 768px — gestapelte Panels zeigen die Überschrift ohnehin waagerecht |
 | Zunächst geöffnetes Panel | Nummer des Panels, das beim Laden bereits offen ist. Beim Überfahren eines anderen Panels wechselt die Anzeige dorthin, beim Verlassen kehrt sie hierher zurück. Leer = alle Panels starten geschlossen |
 | Panel geöffnet lassen | Das zuletzt geöffnete Panel bleibt offen, wenn die Maus die Navigation verlässt |
 
@@ -103,6 +104,8 @@ steuern, zum Beispiel im Theme-Stylesheet:
 | `--imgnav-padding` | `2rem` | Innenabstand des Inhalts |
 | `--imgnav-dim` | `rgba(0,0,0,.3)` | Abdunklung im eingeklappten Zustand |
 | `--imgnav-gradient` | Verlauf | Overlay im aufgeklappten Zustand |
+| `--imgnav-label-size` | `0.9rem` | Schriftgröße der Beschriftung im zugeklappten Zustand |
+| `--imgnav-label-inset` | `0.75rem` | Seitlicher Abstand der waagerechten Beschriftung zum Panelrand |
 | `--imgnav-title-size` | `1.5rem` | Schriftgröße der Überschrift |
 | `--imgnav-text-lines` | `4` | Maximale Zeilenzahl des Kurztextes |
 | `--imgnav-btn-bg` / `--imgnav-btn-bg-hover` / `--imgnav-btn-color` | Blau / Dunkelblau / Weiß | Button-Farben |

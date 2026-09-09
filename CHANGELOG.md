@@ -16,6 +16,8 @@
   wechselt die Anzeige, beim Verlassen kehrt sie zum Startpanel zurück
 - Optional bleibt das zuletzt geöffnete Panel offen, wenn die Maus die
   Navigation verlässt
+- Die Überschrift im zugeklappten Zustand wahlweise senkrecht gedreht
+  (Standard) oder waagerecht mit Zeilenumbruch im sichtbaren Streifen
 
 #### Bedienung
 - Aufklappen per Hover auf Geräten mit Zeiger (Flex-Grow-Animation)

@@ -6,6 +6,7 @@
 
     Kontext aus dem ImgNaviController:
         @var string layout       "horizontal" oder "vertical"
+        @var string label_layout Ausrichtung der Überschrift im zugeklappten Zustand
         @var string height       Gesamthöhe als CSS-Länge, z. B. "600px"
         @var int    count        Anzahl tatsächlich ausgegebener Panels (max. max_items)
         @var int    initial      Nummer des zunächst geöffneten Panels (1-basiert, 0 = keines)
@@ -21,7 +22,7 @@
 #}
 
 {% set attributes = attrs(attributes|default)
-    .addClass(['imgnav', "imgnav--#{layout}"])
+    .addClass(['imgnav', "imgnav--#{layout}", "imgnav--label-#{label_layout}"])
     .set('data-imgnav', true)
     .set('data-imgnav-layout', layout)
     .set('data-imgnav-initial', initial, initial > 0)

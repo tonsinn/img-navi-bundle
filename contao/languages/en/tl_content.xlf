@@ -17,6 +17,18 @@
       <trans-unit id="tl_content.imgNaviLayoutOptions.vertical">
         <source>vertical (stacked)</source>
       </trans-unit>
+      <trans-unit id="tl_content.imgNaviLabel.0">
+        <source>Headline while collapsed</source>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviLabel.1">
+        <source>Orientation of the panel headline while the panel is collapsed. Horizontal headlines wrap inside the visible strip. Only applies to the horizontal arrangement on screens from 768px; stacked panels always show horizontal headlines.</source>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviLabelOptions.vertical">
+        <source>vertical (rotated)</source>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviLabelOptions.horizontal">
+        <source>horizontal (wrapping)</source>
+      </trans-unit>
       <trans-unit id="tl_content.imgNaviInitial.0">
         <source>Initially opened panel</source>
       </trans-unit>

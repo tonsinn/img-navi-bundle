@@ -32,6 +32,7 @@
     --imgnav-dim: rgba(0, 0, 0, 0.3);
     --imgnav-gradient: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.35) 50%, rgba(0, 0, 0, 0) 100%);
     --imgnav-label-size: 0.9rem;
+    --imgnav-label-inset: 0.75rem;
     --imgnav-title-size: 1.5rem;
     --imgnav-text-lines: 4;
 
@@ -157,6 +158,21 @@
 .imgnav--vertical .imgnav__label {
     left: var(--imgnav-padding);
     transform: translateY(-50%);
+}
+
+/* Waagerechte Beschriftung: bricht innerhalb des sichtbaren Streifens um.
+   Nur bei horizontaler Anordnung ab 768px – gestapelte Panels zeigen die
+   Überschrift ohnehin waagerecht und linksbündig. */
+@media (min-width: 768px) {
+    .imgnav--horizontal.imgnav--label-horizontal .imgnav__label {
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: calc(100% - 2 * var(--imgnav-label-inset));
+        white-space: normal;
+        text-align: center;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
 }
 
 /* ---------------------------------------------------------------------------

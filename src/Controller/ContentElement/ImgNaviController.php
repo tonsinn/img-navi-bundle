@@ -41,6 +41,11 @@ class ImgNaviController extends AbstractContentElementController
 
     public const LAYOUTS = ['horizontal', 'vertical'];
 
+    /**
+     * Orientation of the panel headline while the panel is collapsed.
+     */
+    public const LABEL_LAYOUTS = ['vertical', 'horizontal'];
+
     public const HEIGHT_UNITS = ['px', 'vh', 'rem'];
 
     public const DEFAULT_HEIGHT = '600px';
@@ -61,6 +66,10 @@ class ImgNaviController extends AbstractContentElementController
         $count = \count($references);
 
         $layout = \in_array($model->imgNaviLayout, self::LAYOUTS, true) ? $model->imgNaviLayout : self::LAYOUTS[0];
+
+        $labelLayout = \in_array($model->imgNaviLabel, self::LABEL_LAYOUTS, true)
+            ? $model->imgNaviLabel
+            : self::LABEL_LAYOUTS[0];
 
         // Panel that is already open when the page loads (0 = none). Numbers
         // beyond the actual panel count are ignored rather than silently clamped.
@@ -85,6 +94,7 @@ class ImgNaviController extends AbstractContentElementController
 
         $template->set('nested_fragments', $references);
         $template->set('layout', $layout);
+        $template->set('label_layout', $labelLayout);
         $template->set('height', $this->getHeight($model->imgNaviHeight));
         $template->set('count', $count);
         $template->set('initial', $initial);

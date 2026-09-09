@@ -22,6 +22,22 @@
         <source>vertical (stacked)</source>
         <target>vertikal (untereinander)</target>
       </trans-unit>
+      <trans-unit id="tl_content.imgNaviLabel.0">
+        <source>Headline while collapsed</source>
+        <target>Überschrift im zugeklappten Zustand</target>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviLabel.1">
+        <source>Orientation of the panel headline while the panel is collapsed. Horizontal headlines wrap inside the visible strip. Only applies to the horizontal arrangement on screens from 768px; stacked panels always show horizontal headlines.</source>
+        <target>Ausrichtung der Panel-Überschrift, solange das Panel zugeklappt ist. Waagerechte Überschriften brechen innerhalb des sichtbaren Streifens um. Wirkt nur bei horizontaler Anordnung ab 768px; gestapelte Panels zeigen die Überschrift immer waagerecht.</target>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviLabelOptions.vertical">
+        <source>vertical (rotated)</source>
+        <target>senkrecht (gedreht)</target>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviLabelOptions.horizontal">
+        <source>horizontal (wrapping)</source>
+        <target>waagerecht (mit Zeilenumbruch)</target>
+      </trans-unit>
       <trans-unit id="tl_content.imgNaviInitial.0">
         <source>Initially opened panel</source>
         <target>Zunächst geöffnetes Panel</target>
