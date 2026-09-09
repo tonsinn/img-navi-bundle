@@ -27,9 +27,23 @@ Danach die **Datenbank aktualisieren** (Contao Manager → Wartung, oder
 ## Verwendung
 
 1. Im Artikel ein neues Inhaltselement vom Typ **Bildnavigation** anlegen
-   (Gruppe „Verschiedene Elemente“) und dort Anordnung und Höhe festlegen.
+   (Gruppe „Verschiedene Elemente“) und dort Anordnung, Höhe und das
+   Öffnungsverhalten festlegen.
 2. In der Elementliste beim Rahmenelement die Operation **Kind-Elemente** öffnen
    und dort 2 bis 6 Elemente vom Typ **Bildnavigation-Panel** anlegen.
+
+### Felder der Bildnavigation
+
+| Feld | Bedeutung |
+|---|---|
+| Anordnung | Panels nebeneinander (horizontal) oder untereinander (vertikal) |
+| Höhe | Gesamthöhe in px, vh oder rem (Standard 600px) |
+| Zunächst geöffnetes Panel | Nummer des Panels, das beim Laden bereits offen ist. Beim Überfahren eines anderen Panels wechselt die Anzeige dorthin, beim Verlassen kehrt sie hierher zurück. Leer = alle Panels starten geschlossen |
+| Panel geöffnet lassen | Das zuletzt geöffnete Panel bleibt offen, wenn die Maus die Navigation verlässt |
+
+Beide Optionen lassen sich kombinieren: mit einem Startpanel *und* „geöffnet
+lassen“ ist immer genau ein Panel offen — beim Laden das gewählte, danach das
+zuletzt angesteuerte.
 
 ### Felder eines Panels
 
@@ -51,10 +65,19 @@ in der Vorschau ein Hinweis, wenn die Anzahl außerhalb von 2 bis 6 liegt.
 | Situation | Verhalten |
 |---|---|
 | Maus / Trackpad | Hover klappt das Panel auf, die übrigen schrumpfen |
+| Maus verlässt | Alle schließen — oder zurück zum Startpanel, bzw. offen bleiben (je nach Einstellung) |
 | Touch-Gerät | Erster Tap klappt auf, zweiter Tap auf den Button folgt dem Link; Tap daneben schließt |
-| Tastatur | Tab auf den Button klappt das Panel auf, Escape schließt |
+| Tastatur | Tab auf den Button klappt das Panel auf, Escape schließt (bzw. kehrt zum Startpanel zurück) |
 | Schmaler als 768px | Panels immer untereinander, Tap klappt auf |
 | `prefers-reduced-motion` | Übergänge werden abgeschaltet |
+
+### Ohne JavaScript
+
+Das Öffnen wird vom mitgelieferten Skript gesteuert, weil sich ein vorab
+geöffnetes Panel und das Offenbleiben in reinem CSS nicht abbilden lassen.
+Ist JavaScript deaktiviert, greift ein CSS-Fallback: Hover öffnet das Panel,
+beim Verlassen schließt es wieder. Die beiden Optionen bleiben dann ohne
+Wirkung, die Navigation ist aber voll benutzbar.
 
 ## Anpassung
 

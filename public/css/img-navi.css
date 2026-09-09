@@ -262,31 +262,37 @@
 }
 
 /* ---------------------------------------------------------------------------
- * Hover – nur auf Geräten mit echtem Zeiger; Touch läuft über Tap (JS)
+ * Hover – Fallback ohne JavaScript
+ *
+ * Sobald das Skript initialisiert hat, setzt es data-imgnav-init auf den
+ * Wrapper und steuert den Zustand ausschließlich über .is-active. Nur so
+ * lassen sich "zunächst geöffnetes Panel" und "geöffnet lassen" umsetzen –
+ * CSS kann sich den zuletzt überfahrenen Zustand nicht merken.
+ * Diese Regeln greifen deshalb nur, solange kein JavaScript gelaufen ist.
  * ------------------------------------------------------------------------- */
 
 @media (hover: hover) {
-    .imgnav__panels:hover .imgnav__panel {
+    .imgnav:not([data-imgnav-init]) .imgnav__panels:hover .imgnav__panel {
         flex-grow: var(--imgnav-shrink);
     }
 
-    .imgnav__panels:hover .imgnav__panel:hover {
+    .imgnav:not([data-imgnav-init]) .imgnav__panels:hover .imgnav__panel:hover {
         flex-grow: var(--imgnav-grow);
     }
 
-    .imgnav__panel:hover::before {
+    .imgnav:not([data-imgnav-init]) .imgnav__panel:hover::before {
         opacity: 0;
     }
 
-    .imgnav__panel:hover::after {
+    .imgnav:not([data-imgnav-init]) .imgnav__panel:hover::after {
         opacity: 1;
     }
 
-    .imgnav__panel:hover .imgnav__label {
+    .imgnav:not([data-imgnav-init]) .imgnav__panel:hover .imgnav__label {
         opacity: 0;
     }
 
-    .imgnav__panel:hover .imgnav__content {
+    .imgnav:not([data-imgnav-init]) .imgnav__panel:hover .imgnav__content {
         opacity: 1;
         transform: none;
         pointer-events: auto;
@@ -348,7 +354,7 @@
 }
 
 @media (max-width: 767.98px) and (hover: hover) {
-    .imgnav__panel:hover {
+    .imgnav:not([data-imgnav-init]) .imgnav__panel:hover {
         height: var(--imgnav-expanded-mobile);
     }
 }

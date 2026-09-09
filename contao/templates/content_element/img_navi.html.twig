@@ -8,6 +8,8 @@
         @var string layout       "horizontal" oder "vertical"
         @var string height       Gesamthöhe als CSS-Länge, z. B. "600px"
         @var int    count        Anzahl tatsächlich ausgegebener Panels (max. max_items)
+        @var int    initial      Nummer des zunächst geöffneten Panels (1-basiert, 0 = keines)
+        @var bool   sticky       geöffnetes Panel bleibt offen, wenn die Maus die Navigation verlässt
         @var int    count_total  Anzahl gefundener Kind-Elemente
         @var bool   count_valid  min_items <= count_total <= max_items
         @var int    min_items
@@ -22,6 +24,8 @@
     .addClass(['imgnav', "imgnav--#{layout}"])
     .set('data-imgnav', true)
     .set('data-imgnav-layout', layout)
+    .set('data-imgnav-initial', initial, initial > 0)
+    .set('data-imgnav-sticky', true, sticky)
     .addStyle({'--imgnav-height': height, '--imgnav-count': count})
     |csp_unsafe_inline_style
 %}
@@ -34,8 +38,11 @@
     {% endif %}
 
     {% if count > 0 %}
+        {# has-active wird schon serverseitig gesetzt, damit das zunächst
+           geöffnete Panel ohne Nachspringen dargestellt wird #}
         {% set panels_attributes = attrs()
             .addClass('imgnav__panels')
+            .addClass('has-active', initial > 0)
             .set('role', 'list')
             .mergeWith(panels_attributes|default)
         %}

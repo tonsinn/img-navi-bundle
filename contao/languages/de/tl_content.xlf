@@ -22,6 +22,22 @@
         <source>vertical (stacked)</source>
         <target>vertikal (untereinander)</target>
       </trans-unit>
+      <trans-unit id="tl_content.imgNaviInitial.0">
+        <source>Initially opened panel</source>
+        <target>Zunächst geöffnetes Panel</target>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviInitial.1">
+        <source>Number of the panel that is already open when the page loads. Hovering another panel opens that one instead. Leave empty to start with all panels closed.</source>
+        <target>Nummer des Panels, das beim Laden der Seite bereits geöffnet ist. Beim Überfahren eines anderen Panels wechselt die Anzeige dorthin. Leer lassen, wenn alle Panels geschlossen starten sollen.</target>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviSticky.0">
+        <source>Keep panel open</source>
+        <target>Panel geöffnet lassen</target>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviSticky.1">
+        <source>Leave the last opened panel open when the mouse leaves the image navigation, instead of closing it again.</source>
+        <target>Das zuletzt geöffnete Panel geöffnet lassen, wenn die Maus die Bildnavigation verlässt, statt es wieder zu schließen.</target>
+      </trans-unit>
       <trans-unit id="tl_content.imgNaviHeight.0">
         <source>Height</source>
         <target>Höhe</target>

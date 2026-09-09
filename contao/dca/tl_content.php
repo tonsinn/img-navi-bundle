@@ -22,7 +22,7 @@ use Tonsinn\ImgNaviBundle\Controller\ContentElement\ImgNaviItemController;
  */
 $GLOBALS['TL_DCA']['tl_content']['palettes'][ImgNaviController::TYPE] =
     '{type_legend},type,headline,title;'
-    .'{imgnavi_legend},imgNaviLayout,imgNaviHeight;'
+    .'{imgnavi_legend},imgNaviLayout,imgNaviHeight,imgNaviInitial,imgNaviSticky;'
     .'{template_legend:hide},customTpl;'
     .'{protected_legend:hide},protected;'
     .'{expert_legend:hide},cssID;'
@@ -53,6 +53,23 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['imgNaviLayout'] = [
     'reference' => &$GLOBALS['TL_LANG']['tl_content']['imgNaviLayoutOptions'],
     'eval' => ['tl_class' => 'w50'],
     'sql' => "varchar(16) COLLATE ascii_bin NOT NULL default 'horizontal'",
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['imgNaviInitial'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['imgNaviInitial'],
+    'exclude' => true,
+    'inputType' => 'select',
+    'options' => ImgNaviController::INITIAL_OPTIONS,
+    'eval' => ['includeBlankOption' => true, 'tl_class' => 'w50'],
+    'sql' => "smallint(5) unsigned NOT NULL default 0",
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['imgNaviSticky'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['imgNaviSticky'],
+    'exclude' => true,
+    'inputType' => 'checkbox',
+    'eval' => ['tl_class' => 'w50 m12'],
+    'sql' => ['type' => 'boolean', 'default' => false],
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['imgNaviHeight'] = [

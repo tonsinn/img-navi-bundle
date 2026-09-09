@@ -18,9 +18,11 @@
 {% set imgnav = properties.imgnav|default(null) %}
 {% set in_wrapper = imgnav is not null %}
 {% set is_first = in_wrapper and imgnav.index == 0 %}
+{% set is_initial = in_wrapper and imgnav.initial > 0 and imgnav.index + 1 == imgnav.initial %}
 
 {% set attributes = attrs(attributes|default)
     .addClass('imgnav__panel')
+    .addClass('is-active', is_initial)
     .set('data-imgnav-panel', true)
     .set('role', 'listitem', in_wrapper)
 %}

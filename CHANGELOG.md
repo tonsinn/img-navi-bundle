@@ -12,6 +12,10 @@
 - Anordnung horizontal (Standard) oder vertikal
 - Konfigurierbare Gesamthöhe in px, vh oder rem (Standard 600px)
 - Anpassung ohne Template-Override über CSS-Custom-Properties (`--imgnav-*`)
+- Optional ein Panel bereits beim Laden geöffnet; beim Überfahren eines anderen
+  wechselt die Anzeige, beim Verlassen kehrt sie zum Startpanel zurück
+- Optional bleibt das zuletzt geöffnete Panel offen, wenn die Maus die
+  Navigation verlässt
 
 #### Bedienung
 - Aufklappen per Hover auf Geräten mit Zeiger (Flex-Grow-Animation)

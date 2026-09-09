@@ -1,16 +1,24 @@
 /*!
- * tonsinn/img-navi-bundle – Touch- und Tastaturbedienung für die Bildnavigation.
+ * tonsinn/img-navi-bundle – Steuerung der Bildnavigation.
  *
  * Vanilla JS, ohne Abhängigkeiten, mehrfach ausführbar (Guard über
  * data-imgnav-init sowie eine einzige globale Instanz).
  *
+ * Sobald dieses Skript ein Element initialisiert hat, setzt es
+ * data-imgnav-init auf den Wrapper. Die Hover-Regeln in img-navi.css sind
+ * dann abgeschaltet und der Zustand läuft ausschließlich über .is-active –
+ * nur so lassen sich ein vorab geöffnetes Panel und das Offenbleiben nach
+ * dem Verlassen umsetzen. Ohne JavaScript greift der CSS-Hover als Fallback.
+ *
  * Verhalten:
- *  - Geräte mit Zeiger (ab 768px): das Aufklappen macht CSS über :hover,
- *    Links funktionieren wie gewohnt – dieses Skript hält sich heraus.
- *  - Touch-Geräte oder schmale Bildschirme: der erste Tap klappt das Panel auf
- *    (ein Klick auf den Button wird dabei unterdrückt), der zweite Tap auf den
- *    Button folgt dem Link. Tap daneben oder Escape klappt wieder zu.
- *  - Tastatur: Fokus auf den Button klappt auf (CSS :focus-within), Verlassen zu.
+ *  - Zeigergeräte: Überfahren öffnet ein Panel. Beim Verlassen kehrt die
+ *    Navigation zum Startpanel zurück – oder bleibt stehen, wenn
+ *    data-imgnav-sticky gesetzt ist.
+ *  - Touch-Geräte / schmale Bildschirme: Der erste Tap öffnet das Panel (ein
+ *    Klick auf den Button wird dabei unterdrückt), der zweite Tap auf den
+ *    Button folgt dem Link. Tap daneben schließt bzw. kehrt zum Startpanel
+ *    zurück.
+ *  - Tastatur: Fokus auf den Button öffnet das Panel, Escape schließt es.
  *
  * Nach dynamischem Nachladen von Inhalten: window.ImgNavi.init(container)
  */
@@ -37,6 +45,19 @@
         root.container.classList.toggle('has-active', Boolean(panel));
     }
 
+    /**
+     * Zustand nach dem Verlassen bzw. einem Tap daneben: Startpanel wieder
+     * öffnen, alles schließen – oder unverändert lassen, wenn das Panel laut
+     * Einstellung offen bleiben soll.
+     */
+    function restore(root) {
+        if (root.sticky) {
+            return;
+        }
+
+        setActive(root, root.initialPanel);
+    }
+
     function blurInside(root) {
         var active = document.activeElement;
 
@@ -50,20 +71,31 @@
             return;
         }
 
-        el.setAttribute('data-imgnav-init', '');
+        var panels = Array.prototype.slice.call(el.querySelectorAll('[data-imgnav-panel]'));
+        var initial = parseInt(el.getAttribute('data-imgnav-initial'), 10);
 
         var root = {
             el: el,
             container: el.querySelector('.imgnav__panels') || el,
-            panels: Array.prototype.slice.call(el.querySelectorAll('[data-imgnav-panel]'))
+            panels: panels,
+            sticky: el.hasAttribute('data-imgnav-sticky'),
+            initialPanel: initial > 0 ? panels[initial - 1] || null : null
         };
 
         roots.push(root);
 
-        root.panels.forEach(function (panel) {
+        panels.forEach(function (panel) {
+            // Zeigergeräte: Überfahren öffnet das Panel
+            panel.addEventListener('mouseenter', function () {
+                if (isTapMode()) {
+                    return;
+                }
+
+                setActive(root, panel);
+            });
+
             panel.addEventListener('click', function (event) {
                 if (!isTapMode()) {
-                    // Gerät mit Zeiger: CSS erledigt das Aufklappen, Links bleiben normal
                     return;
                 }
 
@@ -75,7 +107,7 @@
                 var link = event.target.closest ? event.target.closest('a') : null;
 
                 if (link && panel.contains(link)) {
-                    // erster Tap klappt nur auf
+                    // erster Tap öffnet nur
                     event.preventDefault();
                 }
 
@@ -84,7 +116,7 @@
 
             panel.addEventListener('focusin', function () {
                 if (isTapMode()) {
-                    // Touch: das Aufklappen übernimmt der Click-Handler
+                    // Touch: das Öffnen übernimmt der Click-Handler
                     return;
                 }
 
@@ -92,11 +124,23 @@
             });
         });
 
+        el.addEventListener('mouseleave', function () {
+            if (isTapMode()) {
+                return;
+            }
+
+            restore(root);
+        });
+
         el.addEventListener('focusout', function (event) {
             if (!event.relatedTarget || !el.contains(event.relatedTarget)) {
-                setActive(root, null);
+                restore(root);
             }
         });
+
+        // Ab hier steuert das Skript den Zustand, der CSS-Hover ist abgeschaltet
+        el.setAttribute('data-imgnav-init', '');
+        setActive(root, root.initialPanel);
     }
 
     function initAll(scope) {
@@ -107,26 +151,25 @@
         }
     }
 
-    function deactivateAll() {
-        roots.forEach(function (root) {
-            setActive(root, null);
-            blurInside(root);
-        });
-    }
-
     document.addEventListener('click', function (event) {
         roots.forEach(function (root) {
             if (!root.el.contains(event.target)) {
-                setActive(root, null);
+                restore(root);
                 blurInside(root);
             }
         });
     });
 
     document.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape') {
-            deactivateAll();
+        if (event.key !== 'Escape') {
+            return;
         }
+
+        // Escape ist eine bewusste Geste: schließt auch bei "geöffnet lassen"
+        roots.forEach(function (root) {
+            setActive(root, root.initialPanel);
+            blurInside(root);
+        });
     });
 
     window.ImgNavi = { init: initAll };

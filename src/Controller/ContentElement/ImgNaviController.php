@@ -45,6 +45,11 @@ class ImgNaviController extends AbstractContentElementController
 
     public const DEFAULT_HEIGHT = '600px';
 
+    /**
+     * Panel numbers selectable as the initially opened panel.
+     */
+    public const INITIAL_OPTIONS = ['1', '2', '3', '4', '5', '6'];
+
     protected function getResponse(FragmentTemplate $template, ContentModel $model, Request $request): Response
     {
         /** @var array<ContentElementReference> $references */
@@ -57,6 +62,14 @@ class ImgNaviController extends AbstractContentElementController
 
         $layout = \in_array($model->imgNaviLayout, self::LAYOUTS, true) ? $model->imgNaviLayout : self::LAYOUTS[0];
 
+        // Panel that is already open when the page loads (0 = none). Numbers
+        // beyond the actual panel count are ignored rather than silently clamped.
+        $initial = (int) $model->imgNaviInitial;
+
+        if ($initial < 1 || $initial > $count) {
+            $initial = 0;
+        }
+
         // Pass the panel context down to the children (available as "properties.imgnav")
         foreach ($references as $index => $reference) {
             $properties = $reference->attributes['templateProperties'] ?? [];
@@ -64,6 +77,7 @@ class ImgNaviController extends AbstractContentElementController
                 'index' => $index,
                 'count' => $count,
                 'layout' => $layout,
+                'initial' => $initial,
             ];
 
             $reference->attributes['templateProperties'] = $properties;
@@ -73,6 +87,8 @@ class ImgNaviController extends AbstractContentElementController
         $template->set('layout', $layout);
         $template->set('height', $this->getHeight($model->imgNaviHeight));
         $template->set('count', $count);
+        $template->set('initial', $initial);
+        $template->set('sticky', (bool) $model->imgNaviSticky);
         $template->set('count_total', $total);
         $template->set('count_valid', $total >= self::MIN_ITEMS && $total <= self::MAX_ITEMS);
         $template->set('min_items', self::MIN_ITEMS);
