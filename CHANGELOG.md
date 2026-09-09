@@ -1,5 +1,20 @@
 # Changelog
 
+### v1.0.1 (09.09.2026)
+
+#### Behoben
+- Die im Backend gewählte Farbe für Überschriften setzt sich jetzt auch gegen
+  Überschriften-Regeln des Themes durch. Zuvor wirkte sie nur auf die
+  Beschriftung im zugeklappten Panel (ein `span`), während die Überschrift des
+  aufgeklappten Panels (`h1`–`h6`) von Theme-Regeln wie `.main-content h2`
+  überschrieben wurde.
+
+#### Sonstiges
+- Keyword `bildnavigation` ergänzt, damit das Paket auch bei deutscher Suche
+  auf Packagist gefunden wird
+- `public/img-navi.svg` durch das Icon aus dem package-metadata-Eintrag
+  ersetzt, damit Contao Manager und Packagist dasselbe Bild zeigen
+
 ### v1.0.0 (09.09.2026)
 
 #### Allgemein
@@ -214,13 +229,4 @@ Manager verwendet, genau einen Treffer.
 - ~~CSS/JS-Assets~~ erledigt (Teil 1)
 - ~~Test gegen Contao 5.7.13 und Contao 6.0.0~~ erledigt (Teil 1)
 - ~~Release veröffentlichen (GitHub, Tag, Packagist)~~ erledigt (Teil 2)
-
----
-
-## Unveröffentlicht
-
-- Die im Backend gewählte Farbe für Überschriften setzt sich jetzt auch gegen
-  Überschriften-Regeln des Themes durch. Zuvor wirkte sie nur auf die
-  Beschriftung im zugeklappten Panel (ein `span`), während die Überschrift des
-  aufgeklappten Panels (`h1`–`h6`) von Theme-Regeln wie `.main-content h2`
-  überschrieben wurde.
+- ~~Keyword `bildnavigation` und Logo-Austausch~~ erledigt (mit v1.0.1)

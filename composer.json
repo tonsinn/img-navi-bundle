@@ -10,7 +10,8 @@
         "content-element",
         "image",
         "navigation",
-        "twig"
+        "twig",
+        "bildnavigation"
     ],
     "license": "LGPL-3.0-or-later",
     "authors": [

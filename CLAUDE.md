@@ -86,10 +86,11 @@ Die drei häufigsten Stolpersteine:
 
 ## Letzter Stand
 
-Version **v1.0.0 ist veröffentlicht**: github.com/tonsinn/img-navi-bundle
-(Remote über SSH, GitHub-Hook aktiv) und auf Packagist als
-`tonsinn/img-navi-bundle`. Die typgefilterte Suche des Contao Managers findet
-das Paket, Composer löst `v1.0.0` gegen Contao 5.7 auf.
+Veröffentlicht auf github.com/tonsinn/img-navi-bundle (Remote über SSH,
+GitHub-Hook aktiv) und auf Packagist als `tonsinn/img-navi-bundle`; der Contao
+Manager findet das Paket über die Suche. **v1.0.1 ist vorbereitet und getaggt**
+— Fix für die Überschriftfarbe gegen Theme-Regeln, deutsches Keyword, neues
+Logo. Metadaten-PR contao/package-metadata#788 ist offen, Linter grün.
 
 Das Rahmenelement hat neun Einstellungen: Anordnung, Höhe, Ausrichtung der
 Beschriftung, Startpanel, Offenbleiben sowie Rahmenbreite/-farbe und Farben für
@@ -101,7 +102,7 @@ h3-Vorbelegung, PHPUnit-Smoke-Test, Label-Kontrast). Die Testinstallation auf
 `img-navi.tonsinn.de` läuft weiter und kann per `bin/remote-uninstall.sh`
 zurückgebaut werden.
 
-Details: siehe CHANGELOG.md, Teil 2. Offene Punkte: siehe TODO.md.
+Details: siehe CHANGELOG.md (Teil 2 und v1.0.1). Offene Punkte: siehe TODO.md.
 
 ---
 

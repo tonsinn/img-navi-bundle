@@ -17,16 +17,8 @@ Erledigte Punkte stehen im Archiv am Ende von CHANGELOG.md.
    sollte oder ein Textschatten-Preset sinnvoll ist.
 6. **Testinstallation zurückbauen**, wenn sie nicht mehr gebraucht wird:
    `bin/remote-uninstall.sh` auf `img-navi.tonsinn.de`.
-7. **Beim nächsten inhaltlichen Release mitnehmen** (beides greift erst mit
-   einem neuen Tag, lohnt kein eigenes Release):
-   - Keyword `bildnavigation` in `composer.json` ergänzen — eine Suche auf
-     Deutsch findet das Paket sonst nicht, da Description und Keywords
-     englisch sind und Packagist die Keywords je Version liest.
-   - `public/img-navi.svg` durch das Strichgrafik-Icon aus dem
-     package-metadata-Eintrag ersetzen (`extra.logo` zeigt darauf), damit
-     Contao Manager und Packagist dasselbe Bild zeigen.
-8. **Textfarbe der Buttons** hat kein Backend-Feld, nur `--imgnav-btn-color`.
+7. **Textfarbe der Buttons** hat kein Backend-Feld, nur `--imgnav-btn-color`.
    Prüfen, ob ein Feld nötig ist, sobald jemand einen hellen Button-Hintergrund
    wählt und der weiße Text unlesbar wird.
-9. **GitHub-Repo abrunden:** Description und Topics im *About*-Kasten setzen,
+8. **GitHub-Repo abrunden:** Description und Topics im *About*-Kasten setzen,
    Website auf die Packagist-URL. Vorschläge stehen in CHANGELOG.md, Teil 2.
