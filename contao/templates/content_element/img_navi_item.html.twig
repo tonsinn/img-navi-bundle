@@ -1,0 +1,135 @@
+{% extends '@Contao/content_element/_base.html.twig' %}
+{% use '@Contao/component/_headline.html.twig' %}
+{% use '@Contao/component/_picture.html.twig' %}
+{% use '@Contao/component/_rich_text.html.twig' %}
+
+{#
+    Bildnavigation – einzelnes Panel (tonsinn/img-navi-bundle)
+
+    Kontext aus dem ImgNaviItemController:
+        @var \Contao\CoreBundle\Image\Studio\Figure|null image
+        @var string href                 leer, wenn kein Link gesetzt ist
+        @var \Contao\CoreBundle\String\HtmlAttributes link_attributes
+        @var string link_text            Button-Beschriftung, Fallback MSC.imgNaviMore
+        @var string text                 Rich-Text aus dem Editor
+        @var array  properties.imgnav    {index, count, layout} – nur innerhalb eines Wrappers gesetzt
+#}
+
+{% set imgnav = properties.imgnav|default(null) %}
+{% set in_wrapper = imgnav is not null %}
+{% set is_first = in_wrapper and imgnav.index == 0 %}
+
+{% set attributes = attrs(attributes|default)
+    .addClass('imgnav__panel')
+    .set('data-imgnav-panel', true)
+    .set('role', 'listitem', in_wrapper)
+%}
+
+{# "inner" wird überschrieben, damit _base die Überschrift nicht über dem Panel ausgibt –
+   sie gehört in die Content-Box bzw. in das eingeklappte Label. #}
+{% block inner %}
+    {% block media %}
+        {% if image %}
+            {% set media_attributes = attrs()
+                .addClass('imgnav__media')
+                .mergeWith(media_attributes|default)
+            %}
+            <div{{ media_attributes }}>
+                {% with {
+                    figure: image,
+                    img_attributes: attrs()
+                        .addClass('imgnav__img')
+                        .set('loading', 'eager')
+                        .set('decoding', 'async')
+                        .set('fetchpriority', 'high', is_first)
+                        .mergeWith(img_attributes|default)
+                } %}
+                    {{ block('picture_component') }}
+                {% endwith %}
+            </div>
+        {% endif %}
+    {% endblock %}
+
+    {# Beschriftung im eingeklappten Zustand – rein dekorativ, der Titel steht unten nochmals #}
+    {% block label %}
+        {% if headline.text %}
+            <span class="imgnav__label" aria-hidden="true">{{ headline.text|insert_tag_raw }}</span>
+        {% endif %}
+    {% endblock %}
+
+    {# Inhalt im aufgeklappten Zustand #}
+    {% block panel_content %}
+        {% set content_attributes = attrs()
+            .addClass('imgnav__content')
+            .mergeWith(content_attributes|default)
+        %}
+        <div{{ content_attributes }}>
+            {% if headline.text %}
+                {% with {headline: {
+                    text: headline.text,
+                    tag_name: headline.tag_name,
+                    attributes: attrs().addClass('imgnav__title')
+                }} %}
+                    {{ block('headline_component') }}
+                {% endwith %}
+            {% endif %}
+
+            {% if text %}
+                {% with {rich_text: {
+                    text: text,
+                    attributes: attrs().addClass('imgnav__text')
+                }} %}
+                    {{ block('rich_text_component') }}
+                {% endwith %}
+            {% endif %}
+
+            {% if href %}
+                {% block button %}
+                    {% set button_attributes = attrs(link_attributes)
+                        .addClass('imgnav__btn')
+                        .mergeWith(button_attributes|default)
+                    %}
+                    <a{{ button_attributes }}>
+                        {{- link_text ?: 'MSC.imgNaviMore'|trans([], 'contao_default') -}}
+                    </a>
+                {% endblock %}
+            {% endif %}
+        </div>
+    {% endblock %}
+{% endblock %}
+
+{# Bild vorladen – nur im Frontend und nur als Teil einer Bildnavigation #}
+{% block metadata %}
+    {% if image and in_wrapper and not as_editor_view %}
+        {% add to head %}
+            {% set img = image.image.img %}
+            {% if image.image.sources is empty %}
+                {% set preload_attributes = attrs()
+                    .set('rel', 'preload')
+                    .set('as', 'image')
+                    .set('href', img.src)
+                    .setIfExists('imagesrcset', img.srcset is defined and img.srcset != img.src ? img.srcset : null)
+                    .setIfExists('imagesizes', img.sizes|default)
+                    .set('fetchpriority', 'high', is_first)
+                %}
+                <link{{ preload_attributes }}>
+            {% else %}
+                {# Bei <picture>: nur art-direktierte Quellen (media) bzw. die erste vorladen #}
+                {% for source in image.image.sources %}
+                    {% if source.media|default or loop.first %}
+                        {% set preload_attributes = attrs()
+                            .set('rel', 'preload')
+                            .set('as', 'image')
+                            .set('imagesrcset', source.srcset)
+                            .setIfExists('imagesizes', source.sizes|default)
+                            .setIfExists('media', source.media|default)
+                            .setIfExists('type', source.type|default)
+                            .set('fetchpriority', 'high', is_first)
+                        %}
+                        <link{{ preload_attributes }}>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endadd %}
+    {% endif %}
+{% endblock %}

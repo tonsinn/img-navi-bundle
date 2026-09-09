@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.1">
+  <file datatype="php" original="contao/languages/en/default.php" source-language="en">
+    <body>
+      <trans-unit id="CTE.img_navi.0">
+        <source>Image navigation</source>
+      </trans-unit>
+      <trans-unit id="CTE.img_navi.1">
+        <source>Generates an animated image navigation (wrapper for 2 to 6 image navigation panels).</source>
+      </trans-unit>
+      <trans-unit id="CTE.img_navi_item.0">
+        <source>Image navigation panel</source>
+      </trans-unit>
+      <trans-unit id="CTE.img_navi_item.1">
+        <source>A single panel (image, headline, text, button) inside an image navigation.</source>
+      </trans-unit>
+      <trans-unit id="MSC.imgNaviMore">
+        <source>Read more</source>
+      </trans-unit>
+      <trans-unit id="MSC.imgNaviCountHint">
+        <source>This image navigation contains %d panel(s). It should contain between %d and %d panels; additional panels are not displayed.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

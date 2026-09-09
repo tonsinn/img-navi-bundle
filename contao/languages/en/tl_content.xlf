@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.1">
+  <file datatype="php" original="contao/languages/en/tl_content.php" source-language="en">
+    <body>
+      <trans-unit id="tl_content.imgnavi_legend">
+        <source>Image navigation settings</source>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviLayout.0">
+        <source>Layout</source>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviLayout.1">
+        <source>Arrange the panels side by side (horizontal) or stacked (vertical). On screens narrower than 768px the panels are always stacked.</source>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviLayoutOptions.horizontal">
+        <source>horizontal (side by side)</source>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviLayoutOptions.vertical">
+        <source>vertical (stacked)</source>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviHeight.0">
+        <source>Height</source>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviHeight.1">
+        <source>Total height of the image navigation (px, vh or rem). Default: 600px.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

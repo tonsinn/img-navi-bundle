@@ -1,0 +1,72 @@
+{% extends '@Contao/content_element/_base.html.twig' %}
+{% use '@Contao/component/_stylesheet.html.twig' %}
+
+{#
+    Bildnavigation – Wrapper (tonsinn/img-navi-bundle)
+
+    Kontext aus dem ImgNaviController:
+        @var string layout       "horizontal" oder "vertical"
+        @var string height       Gesamthöhe als CSS-Länge, z. B. "600px"
+        @var int    count        Anzahl tatsächlich ausgegebener Panels (max. max_items)
+        @var int    count_total  Anzahl gefundener Kind-Elemente
+        @var bool   count_valid  min_items <= count_total <= max_items
+        @var int    min_items
+        @var int    max_items
+        @var list<\Contao\CoreBundle\Fragment\Reference\ContentElementReference> nested_fragments
+
+    Das Aussehen lässt sich ohne Template-Override über die CSS-Custom-Properties
+    in img-navi.css anpassen (--imgnav-grow, --imgnav-duration, --imgnav-btn-bg, …).
+#}
+
+{% set attributes = attrs(attributes|default)
+    .addClass(['imgnav', "imgnav--#{layout}"])
+    .set('data-imgnav', true)
+    .set('data-imgnav-layout', layout)
+    .addStyle({'--imgnav-height': height, '--imgnav-count': count})
+    |csp_unsafe_inline_style
+%}
+
+{% block content %}
+    {% if as_editor_view and not count_valid %}
+        {% block editor_hint %}
+            <p class="tl_info">{{ 'MSC.imgNaviCountHint'|trans([count_total, min_items, max_items], 'contao_default') }}</p>
+        {% endblock %}
+    {% endif %}
+
+    {% if count > 0 %}
+        {% set panels_attributes = attrs()
+            .addClass('imgnav__panels')
+            .set('role', 'list')
+            .mergeWith(panels_attributes|default)
+        %}
+        <div{{ panels_attributes }}>
+            {% block panels %}
+                {% for fragment in nested_fragments %}
+                    {{ content_element(fragment) }}
+                {% endfor %}
+            {% endblock %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block style %}
+    {% add 'imgnav_css' to stylesheets %}
+        {% with {file: imgnav_css_file|default(asset('bundles/tonsinnimgnavi/css/img-navi.css'))} %}
+            {{ block('stylesheet_component') }}
+        {% endwith %}
+    {% endadd %}
+{% endblock %}
+
+{% block script %}
+    {% if not as_editor_view %}
+        {% add 'imgnav_js' to body %}
+            {% set script_attributes = attrs()
+                .set('src', imgnav_js_file|default(asset('bundles/tonsinnimgnavi/js/img-navi.js')))
+                .set('defer', true)
+                .setIfExists('nonce', csp_nonce('script-src'))
+                .mergeWith(script_attributes|default)
+            %}
+            <script{{ script_attributes }}></script>
+        {% endadd %}
+    {% endif %}
+{% endblock %}

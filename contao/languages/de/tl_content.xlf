@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.1">
+  <file datatype="php" original="contao/languages/en/tl_content.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="tl_content.imgnavi_legend">
+        <source>Image navigation settings</source>
+        <target>Bildnavigation-Einstellungen</target>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviLayout.0">
+        <source>Layout</source>
+        <target>Anordnung</target>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviLayout.1">
+        <source>Arrange the panels side by side (horizontal) or stacked (vertical). On screens narrower than 768px the panels are always stacked.</source>
+        <target>Panels nebeneinander (horizontal) oder untereinander (vertikal) anordnen. Auf Bildschirmen schmaler als 768px werden die Panels immer gestapelt.</target>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviLayoutOptions.horizontal">
+        <source>horizontal (side by side)</source>
+        <target>horizontal (nebeneinander)</target>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviLayoutOptions.vertical">
+        <source>vertical (stacked)</source>
+        <target>vertikal (untereinander)</target>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviHeight.0">
+        <source>Height</source>
+        <target>Höhe</target>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviHeight.1">
+        <source>Total height of the image navigation (px, vh or rem). Default: 600px.</source>
+        <target>Gesamthöhe der Bildnavigation (px, vh oder rem). Standard: 600px.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,72 +1,84 @@
 # img-navi-bundle — Contao 5 Bundle
 
 ## Projekt-Überblick
-Image Navigation Bundle für Contao 5.
-Vendor: Mailwurm, Namespace: `Mailwurm\ImgNaviBundle`.
+Animierte Bildnavigation als Inhaltselement für Contao 5.
+Vendor: Tonsinn, Namespace: `Tonsinn\ImgNaviBundle`.
 
 ## Paket-Identität
-- **Packagist**: `mailwurm/img-navi-bundle`
-- **PHP-Namespace**: `Mailwurm\ImgNaviBundle`
-- **Contao-Kompatibilität**: Contao 5.x (Symfony-Bundle-Struktur)
+- **Packagist**: `tonsinn/img-navi-bundle`
+- **PHP-Namespace**: `Tonsinn\ImgNaviBundle`
+- **Bundle-Klasse**: `TonsinnImgNaviBundle` (Asset-Pfad `bundles/tonsinnimgnavi/`)
+- **Contao-Kompatibilität**: Contao 5.3+ und Contao 6 (getestet: 5.7.13, 6.0.0)
 - **Git-Tag für Packagist**: nach Push eines Tags `vX.Y.Z` automatisch
 
+## Elemente
+- `img_navi` — Rahmenelement, rendert 2–6 verschachtelte Panels (`nestedFragments`)
+- `img_navi_item` — einzelnes Panel; nutzt ausschließlich Core-Felder von `tl_content`
+
 ## Tech-Stack
-- PHP 8.2+, Symfony Bundle
-- Contao 5.x (DCA, Templates, Content Elements)
-- DDEV für lokale Entwicklung (Contao 5.7-Instanz unter `~/contao57/`)
-- Composer für Dependency Management
+- PHP 8.2–8.5, Symfony Bundle
+- Contao 5.3+ / 6.x (DCA, Twig-Templates, Content Elements)
+- DDEV für lokale Entwicklung (Contao 5.7 unter `~/contao57/`)
+- Remote-Testserver über `testinstall.env` (nicht im Git!)
 
 ## Verzeichnisstruktur
 ```
 img-navi/
-├── src/
-│   ├── Controller/          # Content Element Controller
-│   ├── ContaoManager/       # Plugin.php für Contao Manager
-│   ├── DependencyInjection/ # Bundle-Konfiguration
-│   └── Resources/
-│       ├── config/          # services.yaml
-│       ├── public/          # Assets (CSS, JS)
-│       └── contao/
-│           └── templates/   # Contao-Templates
+├── bin/                     # Sync- und Deploy-Skripte (nicht im Dist-Paket)
+├── config/services.yaml
 ├── contao/
-│   └── dca/                 # DCA-Definitionen
-├── composer.json
-├── CHANGELOG.md
-├── TODO.md
-└── README.md
+│   ├── dca/tl_content.php
+│   ├── languages/{de,en}/   # XLIFF
+│   └── templates/content_element/
+├── docs/vorbild.md          # Analyse der Vorbild-Animation
+├── public/                  # CSS, JS, Logo (Asset-Root des Bundles)
+└── src/
+    ├── TonsinnImgNaviBundle.php   # getPath() -> Bundle-Root
+    ├── ContaoManager/Plugin.php
+    ├── Controller/ContentElement/
+    ├── DependencyInjection/
+    └── EventListener/DataContainer/
 ```
+
+**Wichtig:** `contao/` und `public/` liegen im Bundle-Root (nicht unter
+`src/Resources/`). Das funktioniert nur wegen des `getPath()`-Overrides in
+`TonsinnImgNaviBundle`.
 
 ## Lokale Entwicklung (DDEV)
 ```bash
-# Bundle-Änderungen in DDEV-Vendor synchronisieren (Symlinks funktionieren nicht!)
-~/contao57/sync-bundle.sh
+# Bundle in die DDEV-Instanz synchronisieren, Cache leeren, Assets verlinken
+bin/sync-img-navi.sh            # --migrate ergänzen, wenn sich die DCA geändert hat
 
-# DDEV-Umgebung
-cd ~/contao57
-ddev start
-ddev exec php vendor/bin/contao-console cache:clear
+cd ~/contao57 && ddev start
 ```
 
-**Wichtig:** Symlinks im DDEV-Container funktionieren wegen WSL2-Beschränkungen
-nicht. Immer das rsync-Sync-Script verwenden (`~/contao57/sync-bundle.sh`).
+## Remote-Test
+```bash
+cp testinstall.env.example testinstall.env   # ausfüllen, steht in .gitignore
+bin/remote-install.sh                        # rsync + composer + migrate
+bin/remote-uninstall.sh                      # Rückbau
+```
+Auf dem KeyHelp-Server läuft PHP 8.5 über `keyhelp-php85`. Composer und
+`contao-console` dort **immer** über diese Binary aufrufen — das System-`php`
+ist älter (8.3). Die PHP-Version des vHosts muss ebenfalls 8.5 sein, sonst
+schlägt `vendor/composer/platform_check.php` im Frontend fehl.
 
 ## Versionierung & Release-Workflow
 ```bash
-# 1. Code-Änderungen committen
 git add . && git commit -m "feat: beschreibung"
-
-# 2. Version taggen
 git tag v5.0.0
-
-# 3. Auf GitHub pushen (Packagist registriert automatisch)
-git push origin main --tags
+git push origin main --tags     # Packagist zieht per Hook nach
 ```
 
-## Bekannte Eigenheiten (geerbt von belegungsplan-bundle)
-- Template-Namen müssen exakt zum Contao-Naming-Convention passen
-- Nach Bundle-Änderungen: Cache leeren + `sync-bundle.sh` ausführen
-- Contao 5 ist Twig-basiert, HTML5-Templates werden noch unterstützt
-- Custom Widget-Typen müssen explizit als Service registriert werden
+## Bekannte Eigenheiten
+- Contao 5 rendert Inhaltselemente über `FragmentTemplate`: nur `set()`, `get()`
+  und `getResponse()` verwenden — die Legacy-Magie entfällt in Contao 6
+- Elementtypen werden über `#[AsContentElement]` registriert; die DCA liefert
+  ausschließlich Palette und Felder, `$GLOBALS['TL_CTE']` niemals selbst setzen
+- Verschachtelte Kinder kommen als `nested_fragments` ins Template und werden
+  mit `{{ content_element(reference) }}` ausgegeben
+- CSS/JS werden über `{% add … to stylesheets|body %}` eingebunden; im Backend
+  gibt Contao diese Blöcke nicht aus (Editor-Vorschau daher ohne Styles)
 - DCA-Paletten müssen vollständig sein, sonst kein Render im Backend
 
 ---

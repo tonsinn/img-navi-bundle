@@ -1,0 +1,341 @@
+/*!
+ * tonsinn/img-navi-bundle – Styles für das Inhaltselement "Bildnavigation"
+ *
+ * BEM-Präfix: imgnav
+ * Anpassungen erfolgen über die Custom Properties auf .imgnav – ein
+ * Template-Override ist dafür nicht nötig, z. B. im eigenen Stylesheet:
+ *
+ *   .imgnav { --imgnav-btn-bg: #c8102e; --imgnav-grow: 4; }
+ */
+
+.imgnav {
+    /* vom Element inline gesetzt */
+    --imgnav-height: 600px;
+    --imgnav-count: 4;
+
+    /* Animation */
+    --imgnav-grow: 3;                 /* flex-grow des aufgeklappten Panels */
+    --imgnav-shrink: 0.6;             /* flex-grow der übrigen Panels */
+    --imgnav-duration: 0.5s;
+    --imgnav-easing: cubic-bezier(0.4, 0, 0.2, 1);
+    --imgnav-content-delay: 0.15s;
+
+    /* schmale Bildschirme (< 768px) */
+    --imgnav-collapsed: 5rem;         /* Panelhöhe eingeklappt */
+    --imgnav-expanded-mobile: 22rem;  /* Panelhöhe aufgeklappt */
+
+    /* Optik */
+    --imgnav-gap: 0;
+    --imgnav-radius: 0;
+    --imgnav-padding: 2rem;
+    --imgnav-color: #fff;
+    --imgnav-dim: rgba(0, 0, 0, 0.3);
+    --imgnav-gradient: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.35) 50%, rgba(0, 0, 0, 0) 100%);
+    --imgnav-label-size: 0.9rem;
+    --imgnav-title-size: 1.5rem;
+    --imgnav-text-lines: 4;
+
+    /* Button */
+    --imgnav-btn-bg: #004a99;
+    --imgnav-btn-bg-hover: #003070;
+    --imgnav-btn-color: #fff;
+    --imgnav-btn-radius: 4px;
+}
+
+/* ---------------------------------------------------------------------------
+ * Grundgerüst
+ * ------------------------------------------------------------------------- */
+
+.imgnav__panels {
+    display: flex;
+    flex-direction: row;
+    gap: var(--imgnav-gap);
+    height: var(--imgnav-height);
+    overflow: hidden;
+    border-radius: var(--imgnav-radius);
+}
+
+.imgnav--vertical .imgnav__panels {
+    flex-direction: column;
+}
+
+.imgnav__panel {
+    position: relative;
+    flex: 1 1 0%;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    color: var(--imgnav-color);
+    transition: flex-grow var(--imgnav-duration) var(--imgnav-easing);
+}
+
+/* ---------------------------------------------------------------------------
+ * Bild und Overlays
+ * ------------------------------------------------------------------------- */
+
+.imgnav__media,
+.imgnav__panel::before,
+.imgnav__panel::after {
+    position: absolute;
+    inset: 0;
+}
+
+.imgnav__media picture,
+.imgnav__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.imgnav__media img {
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Abdunklung – eingeklappt sichtbar, blendet beim Aufklappen aus */
+.imgnav__panel::before {
+    content: "";
+    z-index: 1;
+    background: var(--imgnav-dim);
+    transition: opacity var(--imgnav-duration) var(--imgnav-easing);
+}
+
+/* Verlauf – blendet beim Aufklappen ein (zwei Ebenen, da Gradients nicht animierbar sind) */
+.imgnav__panel::after {
+    content: "";
+    z-index: 1;
+    background: var(--imgnav-gradient);
+    opacity: 0;
+    transition: opacity var(--imgnav-duration) var(--imgnav-easing);
+}
+
+/* ---------------------------------------------------------------------------
+ * Beschriftung im eingeklappten Zustand
+ * ------------------------------------------------------------------------- */
+
+.imgnav__label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    white-space: nowrap;
+    font-size: var(--imgnav-label-size);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.imgnav--vertical .imgnav__label {
+    left: var(--imgnav-padding);
+    transform: translateY(-50%);
+}
+
+/* ---------------------------------------------------------------------------
+ * Inhalt im aufgeklappten Zustand
+ * ------------------------------------------------------------------------- */
+
+.imgnav__content {
+    position: absolute;
+    right: var(--imgnav-padding);
+    bottom: var(--imgnav-padding);
+    left: var(--imgnav-padding);
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(1rem);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.imgnav__title {
+    margin: 0 0 0.5em;
+    font-size: var(--imgnav-title-size);
+    line-height: 1.2;
+    color: inherit;
+}
+
+.imgnav__text {
+    max-height: calc(var(--imgnav-text-lines) * 1.5em);
+    overflow: hidden;
+    line-height: 1.5;
+}
+
+.imgnav__text p {
+    margin: 0 0 0.5em;
+}
+
+.imgnav__text p:last-child {
+    margin-bottom: 0;
+}
+
+.imgnav__btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.6em 1.4em;
+    background: var(--imgnav-btn-bg);
+    color: var(--imgnav-btn-color);
+    border-radius: var(--imgnav-btn-radius);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.imgnav__btn:hover,
+.imgnav__btn:focus-visible {
+    background: var(--imgnav-btn-bg-hover);
+    color: var(--imgnav-btn-color);
+}
+
+.imgnav__btn:focus-visible {
+    outline: 2px solid var(--imgnav-btn-color);
+    outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+ * Aufgeklappter Zustand: .is-active (Tap per JS) und :focus-within (Tastatur)
+ *
+ * Bewusst ohne :has() – der Container bekommt .has-active vom Skript bzw.
+ * greift über :focus-within. Spezifität: schrumpfen (0,3,0) < wachsen (0,4,0).
+ * ------------------------------------------------------------------------- */
+
+.imgnav__panels.has-active .imgnav__panel,
+.imgnav__panels:focus-within .imgnav__panel {
+    flex-grow: var(--imgnav-shrink);
+}
+
+.imgnav__panel.is-active,
+.imgnav__panel:focus-within,
+.imgnav__panels.has-active .imgnav__panel.is-active,
+.imgnav__panels:focus-within .imgnav__panel:focus-within {
+    flex-grow: var(--imgnav-grow);
+}
+
+.imgnav__panel.is-active::before,
+.imgnav__panel:focus-within::before {
+    opacity: 0;
+}
+
+.imgnav__panel.is-active::after,
+.imgnav__panel:focus-within::after {
+    opacity: 1;
+}
+
+.imgnav__panel.is-active .imgnav__label,
+.imgnav__panel:focus-within .imgnav__label {
+    opacity: 0;
+}
+
+.imgnav__panel.is-active .imgnav__content,
+.imgnav__panel:focus-within .imgnav__content {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    transition-delay: var(--imgnav-content-delay);
+}
+
+/* ---------------------------------------------------------------------------
+ * Hover – nur auf Geräten mit echtem Zeiger; Touch läuft über Tap (JS)
+ * ------------------------------------------------------------------------- */
+
+@media (hover: hover) {
+    .imgnav__panels:hover .imgnav__panel {
+        flex-grow: var(--imgnav-shrink);
+    }
+
+    .imgnav__panels:hover .imgnav__panel:hover {
+        flex-grow: var(--imgnav-grow);
+    }
+
+    .imgnav__panel:hover::before {
+        opacity: 0;
+    }
+
+    .imgnav__panel:hover::after {
+        opacity: 1;
+    }
+
+    .imgnav__panel:hover .imgnav__label {
+        opacity: 0;
+    }
+
+    .imgnav__panel:hover .imgnav__content {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+        transition-delay: var(--imgnav-content-delay);
+    }
+}
+
+@media (hover: none) {
+    .imgnav__panel {
+        cursor: pointer;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+ * Schmale Bildschirme: immer gestapelt, Tap zum Aufklappen
+ * ------------------------------------------------------------------------- */
+
+@media (max-width: 767.98px) {
+    .imgnav__panels,
+    .imgnav--vertical .imgnav__panels {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .imgnav__panel {
+        flex: none;
+        height: var(--imgnav-collapsed);
+        cursor: pointer;
+        transition: height var(--imgnav-duration) var(--imgnav-easing);
+    }
+
+    .imgnav__panel.is-active,
+    .imgnav__panel:focus-within {
+        height: var(--imgnav-expanded-mobile);
+    }
+
+    .imgnav__label {
+        left: 1rem;
+        transform: translateY(-50%);
+    }
+
+    .imgnav__content {
+        right: 1rem;
+        bottom: 1rem;
+        left: 1rem;
+    }
+
+    .imgnav__title {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 767.98px) and (hover: hover) {
+    .imgnav__panel:hover {
+        height: var(--imgnav-expanded-mobile);
+    }
+}
+
+/* ---------------------------------------------------------------------------
+ * Reduzierte Bewegung
+ * ------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+    .imgnav {
+        --imgnav-duration: 0s;
+        --imgnav-content-delay: 0s;
+    }
+
+    .imgnav__panel,
+    .imgnav__panel::before,
+    .imgnav__panel::after,
+    .imgnav__label,
+    .imgnav__content,
+    .imgnav__btn {
+        transition: none;
+    }
+}

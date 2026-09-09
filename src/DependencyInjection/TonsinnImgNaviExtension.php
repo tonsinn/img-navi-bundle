@@ -2,20 +2,28 @@
 
 declare(strict_types=1);
 
-namespace Mailwurm\ImgNaviBundle\DependencyInjection;
+/*
+ * This file is part of the img-navi bundle.
+ *
+ * (c) Mathias Ebert
+ *
+ * @license LGPL-3.0-or-later
+ */
+
+namespace Tonsinn\ImgNaviBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-class ImgNaviExtension extends Extension
+class TonsinnImgNaviExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container): void
     {
         $loader = new YamlFileLoader(
             $container,
-            new FileLocator(__DIR__.'/../Resources/config')
+            new FileLocator(__DIR__.'/../../config')
         );
 
         $loader->load('services.yaml');
