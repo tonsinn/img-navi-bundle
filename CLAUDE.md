@@ -86,23 +86,21 @@ Die drei häufigsten Stolpersteine:
 
 ## Letzter Stand
 
-Veröffentlicht auf github.com/tonsinn/img-navi-bundle (Remote über SSH,
-GitHub-Hook aktiv) und auf Packagist als `tonsinn/img-navi-bundle`; der Contao
-Manager findet das Paket über die Suche. **v1.0.1 ist vorbereitet und getaggt**
-— Fix für die Überschriftfarbe gegen Theme-Regeln, deutsches Keyword, neues
-Logo. Metadaten-PR contao/package-metadata#788 ist offen, Linter grün.
+**v1.0.1 ist veröffentlicht** — auf GitHub, auf Packagist (Hook zieht sofort
+nach) und in der Testinstallation installiert. Enthält den Fix, dass die im
+Backend gewählte Überschriftfarbe sich gegen Theme-Regeln durchsetzt.
 
-Das Rahmenelement hat neun Einstellungen: Anordnung, Höhe, Ausrichtung der
-Beschriftung, Startpanel, Offenbleiben sowie Rahmenbreite/-farbe und Farben für
-Überschriften und Buttons. Verifiziert auf Contao 5.7.13 und 6.0.0 unter PHP 8.5.
+Der Metadaten-Eintrag für den Contao Manager liegt als Pull Request
+contao/package-metadata#788 vor, Linter grün, wartet auf die Maintainer. Erst
+nach dem Merge zeigt der Manager Logo, Titel und Beschreibung.
 
-Kein konkreter nächster Schritt offen — die verbleibenden Punkte in TODO.md sind
-Verbesserungen ohne Termindruck (Voter gegen Panels ausserhalb des Wrappers,
-h3-Vorbelegung, PHPUnit-Smoke-Test, Label-Kontrast). Die Testinstallation auf
-`img-navi.tonsinn.de` läuft weiter und kann per `bin/remote-uninstall.sh`
-zurückgebaut werden.
+Kein konkreter nächster Schritt offen. Die neun Punkte in TODO.md sind
+Verbesserungen ohne Termindruck; der einzige, der von aussen abhängt, ist das
+Verfolgen des PR. Die Testinstallation auf `img-navi.tonsinn.de` läuft auf
+`^1.0` aus Packagist — sie ist bewusst NICHT mehr an das Path-Repository
+gebunden, siehe HINWEISE.md.
 
-Details: siehe CHANGELOG.md (Teil 2 und v1.0.1). Offene Punkte: siehe TODO.md.
+Details: siehe CHANGELOG.md, Teil 3. Offene Punkte: siehe TODO.md.
 
 ---
 

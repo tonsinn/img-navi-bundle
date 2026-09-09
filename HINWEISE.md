@@ -71,6 +71,26 @@ in CHANGELOG.md, offene Aufgaben in TODO.md.
   Credential-Helper eingerichtet; ein HTTPS-Push bliebe an der Passwortabfrage
   hängen.
 
+## Contao Manager / package-metadata
+
+- **Logo, Titel und Beschreibung im Manager kommen nicht aus dem Bundle**,
+  sondern aus `contao/package-metadata` (`meta/tonsinn/img-navi-bundle/` mit
+  `logo.svg`, `de.yml`, `en.yml`). Das Logo in `public/img-navi.svg` und
+  `extra.logo` in der `composer.json` sind eine getrennte, zweite Quelle —
+  beide sollten dasselbe Bild zeigen.
+- **Der lokale Klon liegt in `~/package-metadata`.** `origin` muss auf den
+  eigenen Fork zeigen, `upstream` auf `contao/package-metadata`. Vor jedem
+  Beitrag `git fetch upstream && git merge --ff-only upstream/main`, sonst
+  gibt es beim Merge Konflikte.
+- **Der Linter prüft `title` und `description` mit aspell**, nicht die
+  Keywords. Unbekannte Wörter entweder umformulieren oder in
+  `linter/allowlists/de.txt` bzw. `en.txt` eintragen — sparsam, es ist eine
+  geteilte Datei. Produktnamen sind dort üblich (`Belegungsplan`,
+  `Buchnavigation`, `Bildnavigation`). Die Liste ist case-insensitiv
+  alphabetisch sortiert.
+- **Logos sind SVG im Stil einer einfarbigen Strichgrafik** (`#91979c`, keine
+  Hintergrundplatte), passend zum bestehenden Eintrag `belegungsplan-bundle`.
+
 ## Templates
 
 - **Twig-Kommentare dürfen nicht innerhalb eines Tags stehen.** `{# … #}` mitten

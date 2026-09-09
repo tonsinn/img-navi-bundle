@@ -22,3 +22,7 @@ Erledigte Punkte stehen im Archiv am Ende von CHANGELOG.md.
    wählt und der weiße Text unlesbar wird.
 8. **GitHub-Repo abrunden:** Description und Topics im *About*-Kasten setzen,
    Website auf die Packagist-URL. Vorschläge stehen in CHANGELOG.md, Teil 2.
+9. **Metadaten-PR verfolgen:** contao/package-metadata#788 ist offen und der
+   Linter grün. Nach dem Merge im Contao Manager prüfen, ob Logo, Titel und
+   Beschreibung erscheinen. Der lokale Klon liegt in `~/package-metadata`
+   (Branch `add-tonsinn-img-navi-bundle`, `origin` = Fork, `upstream` = Original).

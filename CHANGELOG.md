@@ -220,6 +220,76 @@ Manager verwendet, genau einen Treffer.
 - **Remote über SSH statt HTTPS**, weil kein Credential-Helper eingerichtet war
   und ein HTTPS-Push interaktiv nach einem Token gefragt hätte.
 
+
+---
+
+## Aktueller Stand (09.09.2026, Teil 3)
+
+Nach der Erstveröffentlichung kamen der Eintrag im Contao Manager, zwei
+Fehlerbehebungen und daraus das Release v1.0.1.
+
+Für den Contao Manager entstand ein Eintrag im package-metadata-Repository.
+Der erste Logo-Entwurf — eine farbige Kachel — war am Hausstil vorbei: die
+Vorlage `Belegungsplan.svg` ist eine einfarbige Strichgrafik in `#91979c` ohne
+Hintergrundplatte. Das neue Icon zeigt ein aufgeklapptes Panel mit
+Überschriftenleiste, Textzeile und umrandetem Button neben drei schmalen
+Streifen und ist mit 437 Bytes ein Viertel so groß wie die Vorlage. Beim
+Aufsetzen des Pull Requests fielen zwei Dinge auf: der vorhandene Klon des
+Metadaten-Repos war 76 Commits alt und sein `origin` zeigte auf
+`contao/package-metadata` statt auf den Fork — ein Push wäre also am falschen
+Ziel gelandet. Da der Linter dort mit aspell prüft, wurden zwei vermeidbare
+Wörter umformuliert und nur der Produktname `Bildnavigation` in die deutsche
+Wortliste aufgenommen, dem Muster von `Belegungsplan` und `Buchnavigation`
+folgend. PR #788 läuft grün.
+
+Zwei Fehler kamen aus dem Betrieb. Erstens brach im Contao Manager der Wechsel
+von `@dev` auf `^1.0` ab: das Path-Repository aus `bin/remote-install.sh` ist in
+Composer canonical und hat Vorrang vor Packagist, liefert aber nur `dev-main`.
+Zweitens blieb die im Backend gewählte Farbe für Überschriften im aufgeklappten
+Panel wirkungslos, während sie im zugeklappten wirkte. Der Unterschied war der
+Schlüssel: die eingeklappte Beschriftung ist ein `span`, die Überschrift ein
+`h1`–`h6` und damit von Theme-Regeln wie `.main-content h2` erfasst, die
+spezifischer sind als eine einstufige Klasse. Der Fehler wurde erst reproduziert
+— das Demo-Theme setzt gar keine Überschriftfarben — und dann zweistufig
+behoben: erhöhte Spezifität für den Standard, `!important` über eine
+Modifier-Klasse nur bei ausdrücklich gewählter Farbe. Verifiziert in vier
+Konstellationen gegen Klassen- und ID-Selektoren.
+
+Daraus wurde v1.0.1, zusammen mit den beiden zurückgestellten Punkten Keyword
+und Logo. Packagist zog per Hook sofort nach; die Testinstallation wurde auf
+v1.0.1 aktualisiert und der Fix dort in der echten Release-Version gegengeprüft,
+nicht nur im zuvor handgepatchten `vendor/`-Verzeichnis.
+
+### Geänderte/erstellte Dateien — Session 09.09.2026 (Teil 3)
+- `public/css/img-navi.css` — Überschriftfarbe dreistufig plus
+  `!important`-Regel unter `.imgnav--title-color`
+- `contao/templates/content_element/img_navi.html.twig` — Modifier-Klasse
+  `imgnav--title-color`, wenn eine Farbe gesetzt ist
+- `public/img-navi.svg` — durch die Strichgrafik ersetzt (594 → 437 Bytes)
+- `composer.json` — Keyword `bildnavigation`
+- `bin/remote-install.sh` — Warnhinweis zum Path-Repository im Kopf
+- `README.md` — Verhalten der Überschriftfarbe gegenüber Themes
+- `HINWEISE.md` — Path-Repo-Vorrang, zweistufige Überschriftfarbe
+- `CHANGELOG.md`, `TODO.md`, `CLAUDE.md` — Release v1.0.1 und Pflege
+- ausserhalb des Repos: `~/package-metadata` (Fork synchronisiert, Branch
+  `add-tonsinn-img-navi-bundle`, PR #788) und `Desktop/img-navi.svg`
+
+### Entscheidung — Teil 3
+- **Logo als einfarbige Strichgrafik** statt farbiger Kachel — der Hausstil
+  ergibt sich aus `Belegungsplan.svg`, nicht aus allgemeinen Icon-Konventionen.
+- **Nur `Bildnavigation` in die Linter-Wortliste**, die beiden anderen
+  Risikowörter stattdessen umformuliert. Je weniger Zeilen in einer geteilten
+  Datei, desto geringer die Reibung im Review.
+- **Überschriftfarbe zweistufig statt pauschal `!important`.** Ohne gewählte
+  Farbe bleibt der Standard vom Theme überschreibbar; eine ausdrückliche Wahl
+  im Backend gewinnt dagegen auch gegen ID-Selektoren. Pauschales `!important`
+  hätte Themes die Anpassung ganz verwehrt.
+- **Korrektur direkt ins `vendor/`-Paket gespielt**, nicht über
+  `bin/remote-install.sh` — das Skript hätte das Path-Repository wieder
+  eingetragen und die Instanz von `^1.0` zurück auf `dev-main` geworfen.
+- **Erst v1.0.1, als etwas Inhaltliches anstand.** Keyword und Logo allein
+  waren kein Release wert; zusammen mit dem Fix schon.
+
 ## Abgeschlossene Punkte (Archiv)
 
 - ~~Bundle-Konzept definieren~~ erledigt (Teil 1, siehe `docs/vorbild.md`)
@@ -230,3 +300,4 @@ Manager verwendet, genau einen Treffer.
 - ~~Test gegen Contao 5.7.13 und Contao 6.0.0~~ erledigt (Teil 1)
 - ~~Release veröffentlichen (GitHub, Tag, Packagist)~~ erledigt (Teil 2)
 - ~~Keyword `bildnavigation` und Logo-Austausch~~ erledigt (mit v1.0.1)
+- ~~Metadaten-Eintrag für den Contao Manager (Logo, de/en, PR #788)~~ erledigt (Teil 3)
