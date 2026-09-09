@@ -105,6 +105,15 @@ in CHANGELOG.md, offene Aufgaben in TODO.md.
 - **CSS/JS werden über `{% add … to stylesheets|body %}` eingebunden.** Im
   Backend gibt Contao diese Blöcke nicht aus — die Editor-Vorschau ist deshalb
   bewusst ohne Styles. Das ist Core-Verhalten, kein Fehler.
+- **Die Überschriftfarbe braucht zwei Stufen.** Die Panel-Überschrift ist ein
+  `h1`–`h6` und wird von Theme-Regeln wie `.main-content h2 { color: … }`
+  erfasst, die spezifischer sind als eine einstufige Klasse. Der Standard steht
+  deshalb dreistufig (`.imgnav .imgnav__panel .imgnav__title`) und bleibt vom
+  Theme gezielt überschreibbar; eine im Backend gewählte Farbe setzt zusätzlich
+  die Klasse `imgnav--title-color` und gewinnt per `!important` auch gegen
+  ID-Selektoren. Die Beschriftung ist ein `span` und war nie betroffen — genau
+  daran liess sich der Fehler erkennen: Farbe wirkte im zugeklappten, nicht im
+  aufgeklappten Panel.
 - **Der Rahmen sitzt am Panel, nicht am Bild.** Aus demselben Grund wie oben:
   das Bild ist breiter als der sichtbare Ausschnitt, ein Rahmen daran läge
   grösstenteils ausserhalb. `box-sizing: border-box` am Panel hält ihn

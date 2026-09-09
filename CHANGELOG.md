@@ -214,3 +214,13 @@ Manager verwendet, genau einen Treffer.
 - ~~CSS/JS-Assets~~ erledigt (Teil 1)
 - ~~Test gegen Contao 5.7.13 und Contao 6.0.0~~ erledigt (Teil 1)
 - ~~Release veröffentlichen (GitHub, Tag, Packagist)~~ erledigt (Teil 2)
+
+---
+
+## Unveröffentlicht
+
+- Die im Backend gewählte Farbe für Überschriften setzt sich jetzt auch gegen
+  Überschriften-Regeln des Themes durch. Zuvor wirkte sie nur auf die
+  Beschriftung im zugeklappten Panel (ein `span`), während die Überschrift des
+  aufgeklappten Panels (`h1`–`h6`) von Theme-Regeln wie `.main-content h2`
+  überschrieben wurde.

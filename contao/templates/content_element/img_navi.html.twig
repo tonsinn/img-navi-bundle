@@ -29,6 +29,7 @@
    Twig-Ausdrucks sind sie ein Syntaxfehler. #}
 {% set attributes = attrs(attributes|default)
     .addClass(['imgnav', "imgnav--#{layout}", "imgnav--label-#{label_layout}"])
+    .addClass('imgnav--title-color', headline_color is not empty)
     .set('data-imgnav', true)
     .set('data-imgnav-layout', layout)
     .set('data-imgnav-initial', initial, initial > 0)

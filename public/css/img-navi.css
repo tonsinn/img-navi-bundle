@@ -154,7 +154,6 @@
     z-index: 2;
     transform: translate(-50%, -50%) rotate(-90deg);
     white-space: nowrap;
-    color: var(--imgnav-title-color);
     font-size: var(--imgnav-label-size);
     font-weight: 600;
     letter-spacing: 0.1em;
@@ -204,7 +203,26 @@
     margin: 0 0 0.5em;
     font-size: var(--imgnav-title-size);
     line-height: 1.2;
+}
+
+/* Die Überschrift ist ein h1-h6 und wird deshalb von Theme-Regeln wie
+   ".main-content h2 { color: … }" erfasst, die spezifischer sind als eine
+   einstufige Klasse. Die Farbe wird darum dreistufig gesetzt. Die Beschriftung
+   ist zwar ein span und selten betroffen, bleibt aber der Konsistenz halber
+   in derselben Regel. */
+.imgnav .imgnav__panel .imgnav__title,
+.imgnav .imgnav__panel .imgnav__label {
     color: var(--imgnav-title-color);
+}
+
+/* Hat der Redakteur im Backend eine Farbe gewählt, setzt das Element die
+   Klasse imgnav--title-color. Diese Wahl gewinnt dann auch gegen
+   Theme-Regeln mit ID-Selektor, die sich über Spezifität nicht schlagen
+   lassen. Ohne gewählte Farbe greift die Regel darüber, damit Themes das
+   Aussehen weiterhin anpassen können. */
+.imgnav--title-color .imgnav__panel .imgnav__title,
+.imgnav--title-color .imgnav__panel .imgnav__label {
+    color: var(--imgnav-title-color) !important;
 }
 
 .imgnav__text {

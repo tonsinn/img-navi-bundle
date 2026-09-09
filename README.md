@@ -43,7 +43,7 @@ Danach die **Datenbank aktualisieren** (Contao Manager → Wartung, oder
 | Panel geöffnet lassen | Das zuletzt geöffnete Panel bleibt offen, wenn die Maus die Navigation verlässt |
 | Rahmenbreite | Breite des Rahmens um jedes Panel in Pixeln (Standard 2, `0` = kein Rahmen) |
 | Rahmenfarbe | Farbe des Rahmens. Leer = Standard (Weiß) |
-| Farbe der Überschriften | Gilt für die Überschrift im aufgeklappten Panel **und** die Beschriftung im zugeklappten Zustand. Leer = Standard (Weiß) |
+| Farbe der Überschriften | Gilt für die Überschrift im aufgeklappten Panel **und** die Beschriftung im zugeklappten Zustand. Eine hier gewählte Farbe setzt sich auch gegen Überschriften-Regeln des Themes durch. Leer = Standard (Weiß) |
 | Farbe der Buttons | Hintergrundfarbe der Buttons; die Farbe beim Überfahren wird daraus abgeleitet (20 % dunkler). Leer = Standard (Blau) |
 
 Beide Optionen lassen sich kombinieren: mit einem Startpanel *und* „geöffnet
@@ -114,6 +114,13 @@ steuern, zum Beispiel im Theme-Stylesheet:
 | `--imgnav-text-lines` | `4` | Maximale Zeilenzahl des Kurztextes |
 | `--imgnav-border-width` / `--imgnav-border-color` | `2px` / `#fff` | Rahmen um jedes Panel |
 | `--imgnav-title-color` | wie `--imgnav-color` | Farbe von Überschrift und Beschriftung |
+
+Zur Überschriftfarbe: Die Panel-Überschrift ist ein `h1`–`h6` und wird deshalb
+von Theme-Regeln wie `.main-content h2 { color: … }` erfasst. Solange im Backend
+keine Farbe gewählt ist, setzt sich der Standard gegen solche allgemeinen Regeln
+durch, lässt sich aber vom Theme gezielt überschreiben — etwa mit
+`.imgnav .imgnav__panel .imgnav__title { color: … }`. Sobald im Backend eine
+Farbe gewählt wurde, hat diese Vorrang vor allen Theme-Regeln.
 | `--imgnav-btn-bg` / `--imgnav-btn-bg-hover` / `--imgnav-btn-color` | Blau / Dunkelblau / Weiß | Button-Hintergrund, Hintergrund beim Überfahren, Textfarbe |
 
 Die im Backend gesetzten Farben werden als Custom Properties am Wrapper
