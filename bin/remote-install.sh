@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
-# Installiert bzw. aktualisiert das Bundle auf dem Remote-Testserver.
-# Das Bundle wird als Composer-Path-Repository unter
+# Installiert bzw. aktualisiert das Bundle auf dem Remote-Testserver aus dem
+# lokalen Arbeitsstand. Das Bundle wird als Composer-Path-Repository unter
 # $REMOTE_PATH/bundles/img-navi-bundle eingebunden.
+#
+# ACHTUNG: Das Path-Repository ist canonical und hat Vorrang vor Packagist.
+# Solange es eingetragen ist, laesst sich die Instanz NICHT auf eine
+# veroeffentlichte Version (z. B. ^1.0) umstellen - Composer bricht mit
+# "has higher repository priority" ab. Zum Wechsel auf die Release-Version:
+#   composer config --unset repositories.imgnavi
+#   composer require tonsinn/img-navi-bundle:^1.0
+# Dieses Skript macht die Umstellung wieder rueckgaengig.
 #
 # Zugangsdaten: testinstall.env (siehe testinstall.env.example)
 set -euo pipefail

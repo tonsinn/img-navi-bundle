@@ -45,6 +45,16 @@ in CHANGELOG.md, offene Aufgaben in TODO.md.
   Abhängigkeiten gegen die falsche Version auflösen. Die PHP-Version des vHosts
   muss zur CLI passen, sonst schlägt `vendor/composer/platform_check.php` im
   Frontend fehl.
+- **Das Path-Repository aus `bin/remote-install.sh` blockiert Versionswechsel.**
+  Path-Repos sind in Composer *canonical* und haben Vorrang vor Packagist: sie
+  liefern nur `dev-main`, und ein `^1.0` lässt sich dann nicht auflösen ("has
+  higher repository priority"). Wer auf eine veröffentlichte Version wechseln
+  will, muss das Repo erst entfernen:
+  `composer config --unset repositories.imgnavi`, danach
+  `composer require tonsinn/img-navi-bundle:^1.0`. Umgekehrt setzt ein erneuter
+  Lauf von `bin/remote-install.sh` die Instanz wieder auf den lokalen
+  Entwicklungsstand zurück — das ist gewollt, aber nichts, was man versehentlich
+  auf einer Instanz tun will, die die Release-Version testen soll.
 - **Assets werden dort als Kopien installiert**, nicht als Symlinks. Nach jeder
   Änderung an `public/` erneut `assets:install` ausführen, sonst liefert der
   Server das alte CSS/JS aus.
