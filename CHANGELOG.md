@@ -133,6 +133,78 @@ merken kann.
 
 ---
 
+
+---
+
+## Aktueller Stand (09.09.2026, Teil 2)
+
+Das Bundle hat drei weitere Gestaltungsoptionen bekommen und ist anschließend
+als `v1.0.0` veröffentlicht worden.
+
+Neu ist erstens die Ausrichtung der Panel-Überschrift im zugeklappten Zustand:
+wahlweise senkrecht gedreht wie bisher oder waagerecht mit Zeilenumbruch im
+sichtbaren Streifen. Beim Nachmessen fiel auf, dass die Beschriftung in der
+gestapelten Ansicht unter 768px seit jeher `white-space: nowrap` hatte und lange
+Überschriften seitlich aus dem Panel liefen — gemessen 528px in einem 333px
+breiten Panel. Das ist unabhängig von der neuen Option behoben.
+
+Zweitens rahmen einstellbare Breite und Farbe jedes Panel ein, drittens lassen
+sich Überschriften und Buttons einfärben. Die Hover-Farbe der Buttons wird im
+Controller aus der gewählten Farbe abgeleitet, damit dafür kein zweites Feld
+nötig ist. Alle Werte gehen als CSS-Custom-Properties an den Wrapper; leere
+Felder lässt `HtmlAttributes::addStyle` weg, sodass der Standard aus dem
+Stylesheet greift. Auf Wunsch wurde der Vorgabewert der Rahmenfarbe später von
+`ffffff` auf leer geändert, damit alle drei Farbfelder einheitlich sind.
+
+Beim Ausrollen der Farboptionen legte ein Twig-Kommentar innerhalb des
+`{% set %}`-Ausdrucks das Frontend lahm; der Fehler fiel erst beim Seitenaufruf
+auf. Daraufhin läuft `lint:twig` jetzt in beiden Deploy-Skripten nach
+`cache:clear` und bricht vor der Migration ab.
+
+Die Veröffentlichung erfolgte nach einer Prüfung der gesamten Historie auf
+Zugangsdaten (Passwörter, Host, Benutzer, Datenbankname aus `testinstall.env`
+gegen alle 13 Commits — keine Treffer, `testinstall.env` nie committet). Für
+HTTPS war kein Credential-Helper eingerichtet, es existierte aber ein
+GitHub-SSH-Key samt `~/.ssh/config`-Eintrag; der Remote läuft deshalb über SSH.
+Nach dem Push wurde gegengeprüft: Composer löst `v1.0.0` gegen eine echte
+Contao-5.7-Anforderung auf, und nach dem Nachziehen des Packagist-Suchindex
+findet die typgefilterte Suche (`type=contao-bundle`), wie sie der Contao
+Manager verwendet, genau einen Treffer.
+
+### Geänderte/erstellte Dateien — Session 09.09.2026 (Teil 2)
+- `src/Controller/ContentElement/ImgNaviController.php` — `imgNaviLabel`,
+  Rahmen- und Farbwerte, Helfer `getColor()`, `getBorderWidth()`, `darken()`
+- `contao/dca/tl_content.php` — fünf neue Felder, zweite Legende
+  `imgnavi_style_legend`
+- `contao/templates/content_element/img_navi.html.twig` — Modifier-Klasse für
+  die Beschriftung, Custom Properties für Rahmen und Farben
+- `public/css/img-navi.css` — waagerechte Beschriftung, Umbruch in der
+  gestapelten Ansicht, Rahmen am Panel, `--imgnav-title-color`
+- `contao/languages/{de,en}/tl_content.xlf` — Labels und Hilfetexte der fünf Felder
+- `bin/remote-install.sh`, `bin/sync-img-navi.sh` — `lint:twig` vor der Migration
+- `composer.json` — Description und Keywords auf Englisch
+- `README.md`, `CHANGELOG.md`, `TODO.md`, `CLAUDE.md`, `HINWEISE.md` — Doku
+- Git: Tag `v1.0.0`, Remote `git@github.com:tonsinn/img-navi-bundle.git`
+
+### Entscheidung — Teil 2
+- **Erstveröffentlichung als `v1.0.0` statt `v5.0.0`.** Die geerbte Konvention
+  (Version folgt der Contao-Hauptversion) passt nicht, weil das Bundle Contao 5
+  und 6 gleichzeitig unterstützt — eine „5" im Tag wäre irreführend.
+- **Der Rahmen sitzt am Panel, nicht am Bild.** Das Bild ist breiter als der
+  sichtbare Ausschnitt; ein Rahmen daran läge größtenteils außerhalb.
+  `box-sizing: border-box` hält ihn innerhalb der Panelbreite.
+- **Die Hover-Farbe der Buttons wird in PHP berechnet**, nicht per `color-mix()`
+  in CSS: dort wäre der Wert auf älteren Browsern ungültig und die Hover-Farbe
+  fiele ganz aus.
+- **Die Option für die Beschriftung ist auf die horizontale Anordnung ab 768px
+  begrenzt.** Ohne diese Eingrenzung hätte sie die vertikale und die gestapelte
+  Ansicht überschrieben, wo die Beschriftung ohnehin waagerecht steht.
+- **Description und Keywords englisch, README und Backend-Labels deutsch.**
+  Packagist und GitHub sind ein internationales Publikum, die Redaktionsoberfläche
+  nicht.
+- **Remote über SSH statt HTTPS**, weil kein Credential-Helper eingerichtet war
+  und ein HTTPS-Push interaktiv nach einem Token gefragt hätte.
+
 ## Abgeschlossene Punkte (Archiv)
 
 - ~~Bundle-Konzept definieren~~ erledigt (Teil 1, siehe `docs/vorbild.md`)
@@ -141,3 +213,4 @@ merken kann.
 - ~~Frontend-Templates (Twig) erstellen~~ erledigt (Teil 1)
 - ~~CSS/JS-Assets~~ erledigt (Teil 1)
 - ~~Test gegen Contao 5.7.13 und Contao 6.0.0~~ erledigt (Teil 1)
+- ~~Release veröffentlichen (GitHub, Tag, Packagist)~~ erledigt (Teil 2)

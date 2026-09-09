@@ -64,9 +64,11 @@ ist älter (8.3). Die PHP-Version des vHosts muss ebenfalls 8.5 sein, sonst
 schlägt `vendor/composer/platform_check.php` im Frontend fehl.
 
 ## Versionierung & Release-Workflow
+Semantisch versioniert, unabhängig von der Contao-Hauptversion (v1.0.0 ist die
+Erstveröffentlichung). Remote läuft über SSH, der Packagist-Hook ist aktiv.
 ```bash
 git add . && git commit -m "feat: beschreibung"
-git tag v1.0.0
+git tag -a vX.Y.Z -m "vX.Y.Z"
 git push origin main --tags     # Packagist zieht per Hook nach
 ```
 
@@ -84,18 +86,22 @@ Die drei häufigsten Stolpersteine:
 
 ## Letzter Stand
 
-Das Bundle ist vollständig implementiert und auf zwei Instanzen verifiziert:
-Contao 5.7.13 (`img-navi.tonsinn.de`) und Contao 6.0.0 (`tao6.tonsinn.de`),
-beide unter PHP 8.5. Die Contao-6-Instanz wurde nach dem Test zurückgebaut, die
-5.7-Testinstallation läuft weiter.
+Version **v1.0.0 ist veröffentlicht**: github.com/tonsinn/img-navi-bundle
+(Remote über SSH, GitHub-Hook aktiv) und auf Packagist als
+`tonsinn/img-navi-bundle`. Die typgefilterte Suche des Contao Managers findet
+das Paket, Composer löst `v1.0.0` gegen Contao 5.7 auf.
 
-Vier Commits liegen lokal auf `main` und sind **noch nicht gepusht** — es ist
-kein Git-Remote konfiguriert. Nächster Schritt: GitHub-Remote-URL vom Nutzer
-einholen, `extra.logo` in `composer.json` gegen das tatsächliche Repo abgleichen
-(steht auf `tonsinn/img-navi-bundle`), dann `main` und Tag `v1.0.0` pushen; der
-Packagist-Eintrag erfolgt durch den Nutzer.
+Das Rahmenelement hat neun Einstellungen: Anordnung, Höhe, Ausrichtung der
+Beschriftung, Startpanel, Offenbleiben sowie Rahmenbreite/-farbe und Farben für
+Überschriften und Buttons. Verifiziert auf Contao 5.7.13 und 6.0.0 unter PHP 8.5.
 
-Details: siehe CHANGELOG.md, Teil 1. Offene Punkte: siehe TODO.md.
+Kein konkreter nächster Schritt offen — die verbleibenden Punkte in TODO.md sind
+Verbesserungen ohne Termindruck (Voter gegen Panels ausserhalb des Wrappers,
+h3-Vorbelegung, PHPUnit-Smoke-Test, Label-Kontrast). Die Testinstallation auf
+`img-navi.tonsinn.de` läuft weiter und kann per `bin/remote-uninstall.sh`
+zurückgebaut werden.
+
+Details: siehe CHANGELOG.md, Teil 2. Offene Punkte: siehe TODO.md.
 
 ---
 

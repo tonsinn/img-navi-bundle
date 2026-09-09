@@ -51,6 +51,15 @@ in CHANGELOG.md, offene Aufgaben in TODO.md.
 - **`testinstall.env` enthält Zugangsdaten und steht in `.gitignore`.** Nie
   committen, nie Werte in Ausgaben schreiben — nur `testinstall.env.example`
   wird versioniert.
+- **Vor jedem Push in ein öffentliches Repo die gesamte Historie auf
+  Zugangsdaten prüfen**, nicht nur den Arbeitsbaum:
+  `git grep -I -l -F -- "<wert>" $(git rev-list --all)`. Aus einer
+  veröffentlichten Historie lassen sich Geheimnisse praktisch nicht mehr
+  entfernen.
+- **Der Git-Remote läuft über SSH** (`git@github.com:tonsinn/img-navi-bundle.git`,
+  Key `~/.ssh/id_ed25519_github` per `~/.ssh/config`). Für HTTPS ist kein
+  Credential-Helper eingerichtet; ein HTTPS-Push bliebe an der Passwortabfrage
+  hängen.
 
 ## Templates
 
@@ -86,6 +95,15 @@ in CHANGELOG.md, offene Aufgaben in TODO.md.
 - **CSS/JS werden über `{% add … to stylesheets|body %}` eingebunden.** Im
   Backend gibt Contao diese Blöcke nicht aus — die Editor-Vorschau ist deshalb
   bewusst ohne Styles. Das ist Core-Verhalten, kein Fehler.
+- **Der Rahmen sitzt am Panel, nicht am Bild.** Aus demselben Grund wie oben:
+  das Bild ist breiter als der sichtbare Ausschnitt, ein Rahmen daran läge
+  grösstenteils ausserhalb. `box-sizing: border-box` am Panel hält ihn
+  innerhalb der Panelbreite, sodass das Layout unverändert bleibt.
+- **Optionale Gestaltungswerte laufen über CSS-Custom-Properties am Wrapper.**
+  `HtmlAttributes::addStyle` lässt Eigenschaften mit leerem Wert weg — der
+  Controller gibt für nicht gesetzte Felder deshalb `''` zurück, und der
+  Standard aus `img-navi.css` greift. Kein Fallback-Wert im Template
+  nachbauen, das würde die Kaskade doppeln.
 - **Panels nutzen ausschließlich Core-Felder von `tl_content`.** Neue Felder nur
   am Wrapper anlegen; sonst wachsen die Spalten der Kern-Tabelle für jedes Panel
   mit, ohne dass Redakteure etwas gewinnen.
