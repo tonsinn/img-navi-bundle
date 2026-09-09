@@ -80,6 +80,11 @@ git push origin main --tags     # Packagist zieht per Hook nach
 - CSS/JS werden über `{% add … to stylesheets|body %}` eingebunden; im Backend
   gibt Contao diese Blöcke nicht aus (Editor-Vorschau daher ohne Styles)
 - DCA-Paletten müssen vollständig sein, sonst kein Render im Backend
+- **Reihenfolge beim Deployment:** `cache:clear` muss VOR `contao:migrate`
+  laufen. `contao:migrate` liest die DCA-Definitionen aus dem Cache — mit einem
+  alten Cache kennt es neue Felder nicht und legt deren Spalten stillschweigend
+  nicht an (die Ausgabe meldet trotzdem „All migrations completed“). Die
+  Skripte in `bin/` berücksichtigen das.
 
 ---
 

@@ -29,11 +29,15 @@ fi
 cd "${PROJECT}"
 ddev exec composer dump-autoload
 
+# Cache VOR der Migration leeren: contao:migrate liest die DCA-Definitionen aus
+# dem Cache. Mit einem alten Cache kennt es neue Felder noch nicht und legt die
+# zugehoerigen Spalten nicht an.
+ddev exec php vendor/bin/contao-console cache:clear
+
 if [ "${1:-}" = "--migrate" ]; then
   ddev exec php vendor/bin/contao-console contao:migrate --no-interaction
 fi
 
-ddev exec php vendor/bin/contao-console cache:clear
 ddev exec php vendor/bin/contao-console contao:symlinks
 ddev exec php vendor/bin/contao-console assets:install --symlink
 

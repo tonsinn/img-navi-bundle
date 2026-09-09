@@ -60,8 +60,11 @@ COMPOSER_BIN="$(command -v "$CMP" || echo "$CMP")"
   '{"type":"path","url":"bundles/img-navi-bundle","options":{"symlink":true,"versions":{"tonsinn/img-navi-bundle":"dev-main"}}}'
 "$PHPBIN" "$COMPOSER_BIN" require tonsinn/img-navi-bundle:@dev --no-interaction --no-progress
 
-"$PHPBIN" vendor/bin/contao-console contao:migrate --no-interaction
+# Cache VOR der Migration leeren: contao:migrate liest die DCA-Definitionen aus
+# dem Cache. Mit einem alten Cache kennt es neue Felder noch nicht und legt die
+# zugehoerigen Spalten nicht an.
 "$PHPBIN" vendor/bin/contao-console cache:clear
+"$PHPBIN" vendor/bin/contao-console contao:migrate --no-interaction
 "$PHPBIN" vendor/bin/contao-console assets:install
 REMOTE
 
