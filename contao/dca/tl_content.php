@@ -69,7 +69,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['imgNaviBorderColor'] = [
     'exclude' => true,
     'inputType' => 'text',
     'eval' => ['maxlength' => 6, 'colorpicker' => true, 'isHexColor' => true, 'decodeEntities' => true, 'tl_class' => 'w50 wizard'],
-    'sql' => "varchar(6) COLLATE ascii_bin NOT NULL default 'ffffff'",
+    'sql' => "varchar(6) COLLATE ascii_bin NOT NULL default ''",
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['imgNaviHeadlineColor'] = [

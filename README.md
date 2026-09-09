@@ -42,7 +42,7 @@ Danach die **Datenbank aktualisieren** (Contao Manager → Wartung, oder
 | Zunächst geöffnetes Panel | Nummer des Panels, das beim Laden bereits offen ist. Beim Überfahren eines anderen Panels wechselt die Anzeige dorthin, beim Verlassen kehrt sie hierher zurück. Leer = alle Panels starten geschlossen |
 | Panel geöffnet lassen | Das zuletzt geöffnete Panel bleibt offen, wenn die Maus die Navigation verlässt |
 | Rahmenbreite | Breite des Rahmens um jedes Panel in Pixeln (Standard 2, `0` = kein Rahmen) |
-| Rahmenfarbe | Farbe des Rahmens (Standard Weiß) |
+| Rahmenfarbe | Farbe des Rahmens. Leer = Standard (Weiß) |
 | Farbe der Überschriften | Gilt für die Überschrift im aufgeklappten Panel **und** die Beschriftung im zugeklappten Zustand. Leer = Standard (Weiß) |
 | Farbe der Buttons | Hintergrundfarbe der Buttons; die Farbe beim Überfahren wird daraus abgeleitet (20 % dunkler). Leer = Standard (Blau) |
 

@@ -39,8 +39,8 @@
         <target>Rahmenfarbe</target>
       </trans-unit>
       <trans-unit id="tl_content.imgNaviBorderColor.1">
-        <source>Colour of the frame around each panel. Default: white.</source>
-        <target>Farbe des Rahmens um jedes Panel. Standard: Weiß.</target>
+        <source>Colour of the frame around each panel. Leave empty to use the default (white).</source>
+        <target>Farbe des Rahmens um jedes Panel. Leer lassen für den Standard (Weiß).</target>
       </trans-unit>
       <trans-unit id="tl_content.imgNaviHeadlineColor.0">
         <source>Headline colour</source>
