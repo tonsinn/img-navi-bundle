@@ -71,22 +71,34 @@ git push origin main --tags     # Packagist zieht per Hook nach
 ```
 
 ## Bekannte Eigenheiten
-- Contao 5 rendert Inhaltselemente über `FragmentTemplate`: nur `set()`, `get()`
-  und `getResponse()` verwenden — die Legacy-Magie entfällt in Contao 6
-- Elementtypen werden über `#[AsContentElement]` registriert; die DCA liefert
-  ausschließlich Palette und Felder, `$GLOBALS['TL_CTE']` niemals selbst setzen
-- Verschachtelte Kinder kommen als `nested_fragments` ins Template und werden
-  mit `{{ content_element(reference) }}` ausgegeben
-- CSS/JS werden über `{% add … to stylesheets|body %}` eingebunden; im Backend
-  gibt Contao diese Blöcke nicht aus (Editor-Vorschau daher ohne Styles)
-- DCA-Paletten müssen vollständig sein, sonst kein Render im Backend
-- **Reihenfolge beim Deployment:** `cache:clear` muss VOR `contao:migrate`
-  laufen. `contao:migrate` liest die DCA-Definitionen aus dem Cache — mit einem
-  alten Cache kennt es neue Felder nicht und legt deren Spalten stillschweigend
-  nicht an (die Ausgabe meldet trotzdem „All migrations completed“). Die
-  Skripte in `bin/` berücksichtigen das.
+
+Die dauerhaften Regeln (Contao-API, Bundle-Struktur, Deployment-Reihenfolge,
+Frontend-Invarianten) stehen gesammelt in **HINWEISE.md** — vor Änderungen an
+Templates, CSS/JS oder den Deploy-Skripten dort nachlesen.
+
+Die drei häufigsten Stolpersteine:
+- `cache:clear` muss VOR `contao:migrate` laufen, sonst fehlen neue Spalten
+- `contao/templates/.twig-root` muss existieren, sonst werden Templates unter
+  falschem Namespace registriert
+- Auf dem Testserver immer `keyhelp-php85` statt `php`/`composer` aufrufen
+
+## Letzter Stand
+
+Das Bundle ist vollständig implementiert und auf zwei Instanzen verifiziert:
+Contao 5.7.13 (`img-navi.tonsinn.de`) und Contao 6.0.0 (`tao6.tonsinn.de`),
+beide unter PHP 8.5. Die Contao-6-Instanz wurde nach dem Test zurückgebaut, die
+5.7-Testinstallation läuft weiter.
+
+Vier Commits liegen lokal auf `main` und sind **noch nicht gepusht** — es ist
+kein Git-Remote konfiguriert. Nächster Schritt: GitHub-Remote-URL vom Nutzer
+einholen, `extra.logo` in `composer.json` gegen das tatsächliche Repo abgleichen
+(steht auf `tonsinn/img-navi-bundle`), dann `main` und Tag `v5.0.0` pushen; der
+Packagist-Eintrag erfolgt durch den Nutzer.
+
+Details: siehe CHANGELOG.md, Teil 1. Offene Punkte: siehe TODO.md.
 
 ---
 
 Release-Historie: siehe CHANGELOG.md.
 Offene Punkte: siehe TODO.md.
+Dauerhafte Invarianten: siehe HINWEISE.md.

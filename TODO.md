@@ -1,17 +1,24 @@
 # TODO
 
+Erledigte Punkte stehen im Archiv am Ende von CHANGELOG.md.
+
 ## Offen
 
-- [ ] Eigener Voter: `img_navi_item` außerhalb einer `img_navi` im Backend ausblenden
-- [ ] `load_callback` für die Panel-Überschrift, der leere Werte auf `h3` vorbelegt
-- [ ] PHPUnit-Smoke-Test für die beiden Controller
-- [ ] Kompatibilität mit dem Template-Studio prüfen
-
-## Erledigt
-
-- [x] Bundle-Konzept definieren (siehe `docs/vorbild.md`)
-- [x] Content-Elemente `img_navi` und `img_navi_item` anlegen
-- [x] DCA-Definitionen erstellen
-- [x] Twig-Templates erstellen
-- [x] CSS/JS-Assets
-- [x] Test gegen Contao 5.7.13 und Contao 6.0.0
+1. **Release veröffentlichen** — GitHub-Remote fehlt noch. Sobald die URL
+   vorliegt: `extra.logo` in `composer.json` gegen das tatsächliche Repo
+   abgleichen (steht auf `tonsinn/img-navi-bundle`), `git remote add origin
+   <URL>`, `main` und Tag `v5.0.0` pushen, danach Packagist-Eintrag +
+   GitHub-Hook (macht der Nutzer).
+2. **Eigener Voter:** `img_navi_item` außerhalb einer `img_navi` im Backend
+   ausblenden. Aktuell lässt sich ein Panel auch direkt im Artikel anlegen; es
+   rendert dann ohne Wrapper-CSS als Einzel-Panel.
+3. **`load_callback` für die Panel-Überschrift**, der leere Werte auf `h3`
+   vorbelegt. Der SQL-Default ist `h2`; ein per-Typ-Default in der DCA greift
+   bei Bestandsdatensätzen nicht.
+4. **PHPUnit-Smoke-Test** für die beiden Controller.
+5. **Kompatibilität mit dem Template-Studio** prüfen.
+6. **Kontrast der eingeklappten Labels:** auf hellen Motiven sind die weißen
+   Labels schwer lesbar. Prüfen, ob `--imgnav-dim` als Standard erhöht werden
+   sollte oder ein Textschatten-Preset sinnvoll ist.
+7. **Testinstallation zurückbauen**, wenn sie nicht mehr gebraucht wird:
+   `bin/remote-uninstall.sh` auf `img-navi.tonsinn.de`.
