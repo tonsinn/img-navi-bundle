@@ -1,0 +1,9 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Mailwurm\ImgNaviBundle\:
+        resource: '../../*'
+        exclude: '../../{DependencyInjection,Resources,ContaoManager}'

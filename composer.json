@@ -1,0 +1,40 @@
+{
+    "name": "mailwurm/img-navi-bundle",
+    "type": "contao-bundle",
+    "keywords": ["contao", "contao-bundle", "bundle", "image", "navigation", "contao 5"],
+    "description": "Contao 5 Image Navigation Bundle",
+    "license": "LGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Jan Karai",
+            "homepage": "https://www.sachsen-it.de",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "contao/core-bundle": "^5.0"
+    },
+    "require-dev": {
+        "contao/manager-plugin": "^2.0"
+    },
+    "conflict": {
+        "contao/core": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mailwurm\\ImgNaviBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Mailwurm\\ImgNaviBundle\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "extra": {
+        "contao-manager-plugin": "Mailwurm\\ImgNaviBundle\\ContaoManager\\Plugin"
+    }
+}
