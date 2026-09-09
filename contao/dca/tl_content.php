@@ -23,6 +23,7 @@ use Tonsinn\ImgNaviBundle\Controller\ContentElement\ImgNaviItemController;
 $GLOBALS['TL_DCA']['tl_content']['palettes'][ImgNaviController::TYPE] =
     '{type_legend},type,headline,title;'
     .'{imgnavi_legend},imgNaviLayout,imgNaviHeight,imgNaviLabel,imgNaviInitial,imgNaviSticky;'
+    .'{imgnavi_style_legend},imgNaviBorderWidth,imgNaviBorderColor,imgNaviHeadlineColor,imgNaviButtonColor;'
     .'{template_legend:hide},customTpl;'
     .'{protected_legend:hide},protected;'
     .'{expert_legend:hide},cssID;'
@@ -53,6 +54,38 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['imgNaviLayout'] = [
     'reference' => &$GLOBALS['TL_LANG']['tl_content']['imgNaviLayoutOptions'],
     'eval' => ['tl_class' => 'w50'],
     'sql' => "varchar(16) COLLATE ascii_bin NOT NULL default 'horizontal'",
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['imgNaviBorderWidth'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['imgNaviBorderWidth'],
+    'exclude' => true,
+    'inputType' => 'text',
+    'eval' => ['rgxp' => 'natural', 'maxlength' => 2, 'tl_class' => 'w50'],
+    'sql' => "smallint(5) unsigned NOT NULL default 2",
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['imgNaviBorderColor'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['imgNaviBorderColor'],
+    'exclude' => true,
+    'inputType' => 'text',
+    'eval' => ['maxlength' => 6, 'colorpicker' => true, 'isHexColor' => true, 'decodeEntities' => true, 'tl_class' => 'w50 wizard'],
+    'sql' => "varchar(6) COLLATE ascii_bin NOT NULL default 'ffffff'",
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['imgNaviHeadlineColor'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['imgNaviHeadlineColor'],
+    'exclude' => true,
+    'inputType' => 'text',
+    'eval' => ['maxlength' => 6, 'colorpicker' => true, 'isHexColor' => true, 'decodeEntities' => true, 'tl_class' => 'w50 wizard'],
+    'sql' => "varchar(6) COLLATE ascii_bin NOT NULL default ''",
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['imgNaviButtonColor'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['imgNaviButtonColor'],
+    'exclude' => true,
+    'inputType' => 'text',
+    'eval' => ['maxlength' => 6, 'colorpicker' => true, 'isHexColor' => true, 'decodeEntities' => true, 'tl_class' => 'w50 wizard'],
+    'sql' => "varchar(6) COLLATE ascii_bin NOT NULL default ''",
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['imgNaviLabel'] = [

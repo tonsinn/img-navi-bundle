@@ -20,6 +20,10 @@
   (Standard) oder waagerecht mit Zeilenumbruch im sichtbaren Streifen
 - In der gestapelten Ansicht (unter 768px) bricht die Überschrift ebenfalls um,
   statt seitlich aus dem Panel zu laufen und abgeschnitten zu werden
+- Rahmen um jedes Panel mit einstellbarer Breite (Standard 2px) und Farbe
+  (Standard Weiß); Breite 0 schaltet ihn ab
+- Einstellbare Farbe für Überschriften und für Buttons; die Hover-Farbe der
+  Buttons wird daraus abgeleitet
 
 #### Bedienung
 - Aufklappen per Hover auf Geräten mit Zeiger (Flex-Grow-Animation)

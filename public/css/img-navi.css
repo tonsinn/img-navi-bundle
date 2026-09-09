@@ -27,12 +27,15 @@
     /* Optik */
     --imgnav-gap: 0;
     --imgnav-radius: 0;
+    --imgnav-border-width: 2px;
+    --imgnav-border-color: #fff;
     --imgnav-padding: 2rem;
     --imgnav-color: #fff;
     --imgnav-dim: rgba(0, 0, 0, 0.3);
     --imgnav-gradient: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.35) 50%, rgba(0, 0, 0, 0) 100%);
     --imgnav-label-size: 0.9rem;
     --imgnav-label-inset: 0.75rem;
+    --imgnav-title-color: var(--imgnav-color);
     --imgnav-title-size: 1.5rem;
     --imgnav-text-lines: 4;
 
@@ -62,11 +65,16 @@
 
 .imgnav__panel {
     position: relative;
+    box-sizing: border-box;
     flex: 1 1 0%;
     min-width: 0;
     min-height: 0;
     overflow: hidden;
     color: var(--imgnav-color);
+    /* Der Rahmen liegt am Panel, nicht am Bild: das Bild ist breiter als der
+       sichtbare Ausschnitt, ein Rahmen daran läge grösstenteils ausserhalb.
+       box-sizing haelt den Rahmen innerhalb der Panelbreite. */
+    border: var(--imgnav-border-width) solid var(--imgnav-border-color);
     transition: flex-grow var(--imgnav-duration) var(--imgnav-easing);
 }
 
@@ -146,6 +154,7 @@
     z-index: 2;
     transform: translate(-50%, -50%) rotate(-90deg);
     white-space: nowrap;
+    color: var(--imgnav-title-color);
     font-size: var(--imgnav-label-size);
     font-weight: 600;
     letter-spacing: 0.1em;
@@ -195,7 +204,7 @@
     margin: 0 0 0.5em;
     font-size: var(--imgnav-title-size);
     line-height: 1.2;
-    color: inherit;
+    color: var(--imgnav-title-color);
 }
 
 .imgnav__text {

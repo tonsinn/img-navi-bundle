@@ -50,6 +50,8 @@ class ImgNaviController extends AbstractContentElementController
 
     public const DEFAULT_HEIGHT = '600px';
 
+    public const MAX_BORDER_WIDTH = 40;
+
     /**
      * Panel numbers selectable as the initially opened panel.
      */
@@ -95,6 +97,16 @@ class ImgNaviController extends AbstractContentElementController
         $template->set('nested_fragments', $references);
         $template->set('layout', $layout);
         $template->set('label_layout', $labelLayout);
+
+        // Rahmen und Farben werden als CSS-Custom-Properties am Wrapper gesetzt.
+        // Ein leerer Wert lässt die Property weg, sodass der Standard aus
+        // img-navi.css greift (HtmlAttributes::addStyle entfernt leere Werte).
+        $template->set('border_width', $this->getBorderWidth($model->imgNaviBorderWidth));
+        $template->set('border_color', $this->getColor($model->imgNaviBorderColor));
+        $template->set('headline_color', $this->getColor($model->imgNaviHeadlineColor));
+        $buttonColor = $this->getColor($model->imgNaviButtonColor);
+        $template->set('button_color', $buttonColor);
+        $template->set('button_color_hover', $this->darken($buttonColor, 0.8));
         $template->set('height', $this->getHeight($model->imgNaviHeight));
         $template->set('count', $count);
         $template->set('initial', $initial);
@@ -105,6 +117,67 @@ class ImgNaviController extends AbstractContentElementController
         $template->set('max_items', self::MAX_ITEMS);
 
         return $template->getResponse();
+    }
+
+    /**
+     * Turns a hex value stored without a leading hash into a CSS color.
+     * Returns an empty string for anything that is not a valid hex color, so
+     * the stylesheet default stays in place.
+     */
+    private function getColor(mixed $value): string
+    {
+        $hex = ltrim(trim((string) $value), '#');
+
+        if (!preg_match('/^(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/', $hex)) {
+            return '';
+        }
+
+        return '#'.$hex;
+    }
+
+    /**
+     * Derives the hover colour from the button colour so editors only have to
+     * pick one. Computed here rather than with color-mix() in CSS, which would
+     * silently produce an invalid value on older browsers.
+     */
+    private function darken(string $color, float $factor): string
+    {
+        if ('' === $color) {
+            return '';
+        }
+
+        $hex = ltrim($color, '#');
+
+        if (3 === \strlen($hex)) {
+            $hex = $hex[0].$hex[0].$hex[1].$hex[1].$hex[2].$hex[2];
+        }
+
+        $channels = array_map(
+            static fn (string $part): int => max(0, min(255, (int) round(hexdec($part) * $factor))),
+            str_split($hex, 2),
+        );
+
+        return vsprintf('#%02x%02x%02x', $channels);
+    }
+
+    /**
+     * Border width in pixels; 0 disables the border.
+     */
+    private function getBorderWidth(mixed $value): string
+    {
+        if ('' === trim((string) $value)) {
+            return '';
+        }
+
+        $width = (int) $value;
+
+        if ($width < 0) {
+            $width = 0;
+        } elseif ($width > self::MAX_BORDER_WIDTH) {
+            $width = self::MAX_BORDER_WIDTH;
+        }
+
+        return $width.'px';
     }
 
     /**

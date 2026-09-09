@@ -34,6 +34,9 @@ ddev exec composer dump-autoload
 # zugehoerigen Spalten nicht an.
 ddev exec php vendor/bin/contao-console cache:clear
 
+# Twig-Syntax pruefen, bevor migriert wird
+ddev exec php vendor/bin/contao-console lint:twig img-navi-bundle/contao/templates
+
 if [ "${1:-}" = "--migrate" ]; then
   ddev exec php vendor/bin/contao-console contao:migrate --no-interaction
 fi

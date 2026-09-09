@@ -7,6 +7,9 @@
     Kontext aus dem ImgNaviController:
         @var string layout       "horizontal" oder "vertical"
         @var string label_layout Ausrichtung der Überschrift im zugeklappten Zustand
+        @var string border_width  Rahmenbreite als CSS-Länge, z. B. "2px"
+        @var string border_color  Rahmenfarbe, leer = Standard aus img-navi.css
+        @var string headline_color, button_color, button_color_hover — dito
         @var string height       Gesamthöhe als CSS-Länge, z. B. "600px"
         @var int    count        Anzahl tatsächlich ausgegebener Panels (max. max_items)
         @var int    initial      Nummer des zunächst geöffneten Panels (1-basiert, 0 = keines)
@@ -21,13 +24,24 @@
     in img-navi.css anpassen (--imgnav-grow, --imgnav-duration, --imgnav-btn-bg, …).
 #}
 
+{# Leere Werte werden von addStyle weggelassen, dann greift der Standard aus
+   img-navi.css. Kommentare gehören ausserhalb des set-Tags – innerhalb eines
+   Twig-Ausdrucks sind sie ein Syntaxfehler. #}
 {% set attributes = attrs(attributes|default)
     .addClass(['imgnav', "imgnav--#{layout}", "imgnav--label-#{label_layout}"])
     .set('data-imgnav', true)
     .set('data-imgnav-layout', layout)
     .set('data-imgnav-initial', initial, initial > 0)
     .set('data-imgnav-sticky', true, sticky)
-    .addStyle({'--imgnav-height': height, '--imgnav-count': count})
+    .addStyle({
+        '--imgnav-height': height,
+        '--imgnav-count': count,
+        '--imgnav-border-width': border_width,
+        '--imgnav-border-color': border_color,
+        '--imgnav-title-color': headline_color,
+        '--imgnav-btn-bg': button_color,
+        '--imgnav-btn-bg-hover': button_color_hover
+    })
     |csp_unsafe_inline_style
 %}
 

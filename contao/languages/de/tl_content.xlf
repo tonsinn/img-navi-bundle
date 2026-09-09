@@ -22,6 +22,42 @@
         <source>vertical (stacked)</source>
         <target>vertikal (untereinander)</target>
       </trans-unit>
+      <trans-unit id="tl_content.imgnavi_style_legend">
+        <source>Frame and colours</source>
+        <target>Rahmen und Farben</target>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviBorderWidth.0">
+        <source>Frame width</source>
+        <target>Rahmenbreite</target>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviBorderWidth.1">
+        <source>Width of the frame around each panel in pixels. Default: 2. Enter 0 for no frame.</source>
+        <target>Breite des Rahmens um jedes Panel in Pixeln. Standard: 2. Mit 0 wird kein Rahmen ausgegeben.</target>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviBorderColor.0">
+        <source>Frame colour</source>
+        <target>Rahmenfarbe</target>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviBorderColor.1">
+        <source>Colour of the frame around each panel. Default: white.</source>
+        <target>Farbe des Rahmens um jedes Panel. Standard: Weiß.</target>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviHeadlineColor.0">
+        <source>Headline colour</source>
+        <target>Farbe der Überschriften</target>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviHeadlineColor.1">
+        <source>Colour of the panel headlines, including the label shown while the panel is collapsed. Leave empty to use the default (white).</source>
+        <target>Farbe der Panel-Überschriften, einschließlich der Beschriftung im zugeklappten Zustand. Leer lassen für den Standard (Weiß).</target>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviButtonColor.0">
+        <source>Button colour</source>
+        <target>Farbe der Buttons</target>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviButtonColor.1">
+        <source>Background colour of the buttons. The hover colour is derived from it automatically. Leave empty to use the default (blue).</source>
+        <target>Hintergrundfarbe der Buttons. Die Farbe beim Überfahren wird daraus automatisch abgeleitet. Leer lassen für den Standard (Blau).</target>
+      </trans-unit>
       <trans-unit id="tl_content.imgNaviLabel.0">
         <source>Headline while collapsed</source>
         <target>Überschrift im zugeklappten Zustand</target>

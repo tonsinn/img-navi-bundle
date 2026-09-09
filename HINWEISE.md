@@ -52,6 +52,15 @@ in CHANGELOG.md, offene Aufgaben in TODO.md.
   committen, nie Werte in Ausgaben schreiben — nur `testinstall.env.example`
   wird versioniert.
 
+## Templates
+
+- **Twig-Kommentare dürfen nicht innerhalb eines Tags stehen.** `{# … #}` mitten
+  in einem `{% set … %}`-Ausdruck ist ein Syntaxfehler („Unclosed") und legt das
+  Frontend lahm. Kommentare gehören vor oder hinter das Tag.
+- **Vor dem Ausrollen `lint:twig` laufen lassen.** Die Skripte in `bin/` machen
+  das nach `cache:clear` und brechen bei einem Fehler ab; von Hand:
+  `vendor/bin/contao-console lint:twig <pfad>/contao/templates`.
+
 ## Frontend
 
 - **Das Panelbild ist ein Fenster, kein Zuschnitt.** Das Bild behält seine

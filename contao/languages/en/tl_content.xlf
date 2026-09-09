@@ -17,6 +17,33 @@
       <trans-unit id="tl_content.imgNaviLayoutOptions.vertical">
         <source>vertical (stacked)</source>
       </trans-unit>
+      <trans-unit id="tl_content.imgnavi_style_legend">
+        <source>Frame and colours</source>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviBorderWidth.0">
+        <source>Frame width</source>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviBorderWidth.1">
+        <source>Width of the frame around each panel in pixels. Default: 2. Enter 0 for no frame.</source>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviBorderColor.0">
+        <source>Frame colour</source>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviBorderColor.1">
+        <source>Colour of the frame around each panel. Default: white.</source>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviHeadlineColor.0">
+        <source>Headline colour</source>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviHeadlineColor.1">
+        <source>Colour of the panel headlines, including the label shown while the panel is collapsed. Leave empty to use the default (white).</source>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviButtonColor.0">
+        <source>Button colour</source>
+      </trans-unit>
+      <trans-unit id="tl_content.imgNaviButtonColor.1">
+        <source>Background colour of the buttons. The hover colour is derived from it automatically. Leave empty to use the default (blue).</source>
+      </trans-unit>
       <trans-unit id="tl_content.imgNaviLabel.0">
         <source>Headline while collapsed</source>
       </trans-unit>

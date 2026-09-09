@@ -41,6 +41,10 @@ Danach die **Datenbank aktualisieren** (Contao Manager → Wartung, oder
 | Überschrift im zugeklappten Zustand | Senkrecht gedreht (Standard) oder waagerecht mit Zeilenumbruch innerhalb des sichtbaren Streifens. Wirkt nur bei horizontaler Anordnung ab 768px — gestapelte Panels zeigen die Überschrift ohnehin waagerecht und umbrechend |
 | Zunächst geöffnetes Panel | Nummer des Panels, das beim Laden bereits offen ist. Beim Überfahren eines anderen Panels wechselt die Anzeige dorthin, beim Verlassen kehrt sie hierher zurück. Leer = alle Panels starten geschlossen |
 | Panel geöffnet lassen | Das zuletzt geöffnete Panel bleibt offen, wenn die Maus die Navigation verlässt |
+| Rahmenbreite | Breite des Rahmens um jedes Panel in Pixeln (Standard 2, `0` = kein Rahmen) |
+| Rahmenfarbe | Farbe des Rahmens (Standard Weiß) |
+| Farbe der Überschriften | Gilt für die Überschrift im aufgeklappten Panel **und** die Beschriftung im zugeklappten Zustand. Leer = Standard (Weiß) |
+| Farbe der Buttons | Hintergrundfarbe der Buttons; die Farbe beim Überfahren wird daraus abgeleitet (20 % dunkler). Leer = Standard (Blau) |
 
 Beide Optionen lassen sich kombinieren: mit einem Startpanel *und* „geöffnet
 lassen“ ist immer genau ein Panel offen — beim Laden das gewählte, danach das
@@ -108,7 +112,14 @@ steuern, zum Beispiel im Theme-Stylesheet:
 | `--imgnav-label-inset` | `0.75rem` | Seitlicher Abstand der waagerechten Beschriftung zum Panelrand |
 | `--imgnav-title-size` | `1.5rem` | Schriftgröße der Überschrift |
 | `--imgnav-text-lines` | `4` | Maximale Zeilenzahl des Kurztextes |
-| `--imgnav-btn-bg` / `--imgnav-btn-bg-hover` / `--imgnav-btn-color` | Blau / Dunkelblau / Weiß | Button-Farben |
+| `--imgnav-border-width` / `--imgnav-border-color` | `2px` / `#fff` | Rahmen um jedes Panel |
+| `--imgnav-title-color` | wie `--imgnav-color` | Farbe von Überschrift und Beschriftung |
+| `--imgnav-btn-bg` / `--imgnav-btn-bg-hover` / `--imgnav-btn-color` | Blau / Dunkelblau / Weiß | Button-Hintergrund, Hintergrund beim Überfahren, Textfarbe |
+
+Die im Backend gesetzten Farben werden als Custom Properties am Wrapper
+ausgegeben; ein leeres Feld lässt die Property weg, sodass der Standard greift.
+Die Textfarbe der Buttons hat kein eigenes Feld — sie lässt sich über
+`--imgnav-btn-color` anpassen, falls ein heller Button-Hintergrund gewählt wird.
 
 Für weitergehende Änderungen können die Templates
 `content_element/img_navi.html.twig` und `content_element/img_navi_item.html.twig`

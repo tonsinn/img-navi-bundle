@@ -64,6 +64,11 @@ COMPOSER_BIN="$(command -v "$CMP" || echo "$CMP")"
 # dem Cache. Mit einem alten Cache kennt es neue Felder noch nicht und legt die
 # zugehoerigen Spalten nicht an.
 "$PHPBIN" vendor/bin/contao-console cache:clear
+
+# Twig-Syntax pruefen, bevor migriert wird: ein Fehler im Template legt sonst
+# das Frontend lahm und faellt erst beim Aufruf auf.
+"$PHPBIN" vendor/bin/contao-console lint:twig bundles/img-navi-bundle/contao/templates
+
 "$PHPBIN" vendor/bin/contao-console contao:migrate --no-interaction
 "$PHPBIN" vendor/bin/contao-console assets:install
 REMOTE
