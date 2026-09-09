@@ -20,6 +20,10 @@
 - Unter 768px immer gestapelte Darstellung
 - Berücksichtigt `prefers-reduced-motion`
 
+#### Darstellung
+- Das Bild füllt die volle Panelhöhe und behält seine Proportionen; das Panel wirkt
+  als Fenster darauf, sodass beim Aufklappen mehr vom Bild sichtbar wird
+
 #### Performance
 - Bild-Preload (`<link rel="preload" as="image">`) für alle Panels im `<head>`
 - `loading="eager"`, `decoding="async"`, `fetchpriority="high"` für das erste Panel

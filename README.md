@@ -92,9 +92,24 @@ im Projektverzeichnis `templates/` überschrieben werden.
 
 Die Panel-Bilder werden über `<link rel="preload" as="image">` im `<head>`
 vorgeladen, damit beim Aufklappen nichts nachlädt. Deshalb ist die **Bildgröße ein
-Pflichtfeld**: ohne sie würde das unskalierte Originalbild vorgeladen. Empfohlen
-ist eine Bildgröße um 1600 × 900 Pixel im Modus „crop“ ohne zusätzliche
-Pixeldichten.
+Pflichtfeld**: ohne sie würde das unskalierte Originalbild vorgeladen.
+
+### Wahl der Bildgröße
+
+Das Bild füllt immer die volle Panelhöhe und behält seine Proportionen; das Panel
+wirkt als Fenster darauf. Beim Aufklappen wird deshalb *mehr vom Bild sichtbar*,
+statt das Bild neu zuzuschneiden.
+
+Damit das aufgehende Panel nie über das Bild hinausläuft, sollte das Bild breiter
+sein als das breiteste aufgeklappte Panel. Die gerenderte Bildbreite ergibt sich aus
+Panelhöhe × Seitenverhältnis: bei 600px Höhe und 16:9 sind das rund 1070px, was für
+Inhaltsbereiche bis etwa 1700px ausreicht. Für breitere Layouts oder mehr Panels
+empfiehlt sich ein flacheres Seitenverhältnis (etwa 21:9).
+
+Ist das Bild zu schmal, wird es als Rückfallebene auf die Panelbreite beschnitten —
+die Darstellung bleibt korrekt, der Aufzieh-Effekt fällt aber schwächer aus.
+
+Empfohlen: **1600 × 900 im Modus „crop“** ohne zusätzliche Pixeldichten.
 
 ## Changelog
 
