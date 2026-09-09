@@ -7,7 +7,7 @@ Erledigte Punkte stehen im Archiv am Ende von CHANGELOG.md.
 1. **Release veröffentlichen** — GitHub-Remote fehlt noch. Sobald die URL
    vorliegt: `extra.logo` in `composer.json` gegen das tatsächliche Repo
    abgleichen (steht auf `tonsinn/img-navi-bundle`), `git remote add origin
-   <URL>`, `main` und Tag `v5.0.0` pushen, danach Packagist-Eintrag +
+   <URL>`, `main` und Tag `v1.0.0` pushen, danach Packagist-Eintrag +
    GitHub-Hook (macht der Nutzer).
 2. **Eigener Voter:** `img_navi_item` außerhalb einer `img_navi` im Backend
    ausblenden. Aktuell lässt sich ein Panel auch direkt im Artikel anlegen; es

@@ -66,7 +66,7 @@ schlägt `vendor/composer/platform_check.php` im Frontend fehl.
 ## Versionierung & Release-Workflow
 ```bash
 git add . && git commit -m "feat: beschreibung"
-git tag v5.0.0
+git tag v1.0.0
 git push origin main --tags     # Packagist zieht per Hook nach
 ```
 
@@ -92,7 +92,7 @@ beide unter PHP 8.5. Die Contao-6-Instanz wurde nach dem Test zurückgebaut, die
 Vier Commits liegen lokal auf `main` und sind **noch nicht gepusht** — es ist
 kein Git-Remote konfiguriert. Nächster Schritt: GitHub-Remote-URL vom Nutzer
 einholen, `extra.logo` in `composer.json` gegen das tatsächliche Repo abgleichen
-(steht auf `tonsinn/img-navi-bundle`), dann `main` und Tag `v5.0.0` pushen; der
+(steht auf `tonsinn/img-navi-bundle`), dann `main` und Tag `v1.0.0` pushen; der
 Packagist-Eintrag erfolgt durch den Nutzer.
 
 Details: siehe CHANGELOG.md, Teil 1. Offene Punkte: siehe TODO.md.

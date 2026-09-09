@@ -1,6 +1,6 @@
 # Changelog
 
-### v5.0.0 (09.09.2026)
+### v1.0.0 (09.09.2026)
 
 #### Allgemein
 - Erstveröffentlichung für Contao 5.3+ und Contao 6 (reine Twig-Templates)
@@ -48,7 +48,7 @@
 - Projekt angelegt: Grundstruktur des Bundles erstellt
 - Vorbild-Animation analysiert und in `docs/vorbild.md` dokumentiert
 - Bildnavigation implementiert (Controller, DCA, Twig, CSS, JS, Sprachdateien)
-- Umstellung auf Vendor `tonsinn`, Release v5.0.0
+- Umstellung auf Vendor `tonsinn`, Release v1.0.0
 
 ---
 
