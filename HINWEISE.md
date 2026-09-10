@@ -89,7 +89,11 @@ in CHANGELOG.md, offene Aufgaben in TODO.md.
   `Buchnavigation`, `Bildnavigation`). Die Liste ist case-insensitiv
   alphabetisch sortiert.
 - **Logos sind SVG im Stil einer einfarbigen Strichgrafik** (`#91979c`, keine
-  Hintergrundplatte), passend zum bestehenden Eintrag `belegungsplan-bundle`.
+  Hintergrundplatte), passend zum bestehenden Eintrag `belegungsplan-bundle`,
+  gezeichnet auf `viewBox 0 0 360 360` mit etwa 10er-Strich. Nicht einfach eine
+  Kleinfassung hochskalieren: Strichstärke und Detailgrad hängen von der
+  Zielgröße ab. `public/img-navi.svg` und `logo.svg` im Metadaten-Repo sind
+  identisch zu halten.
 
 ## Templates
 

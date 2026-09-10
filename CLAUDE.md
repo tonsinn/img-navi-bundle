@@ -86,22 +86,16 @@ Die drei häufigsten Stolpersteine:
 
 ## Letzter Stand
 
-**v1.0.2 ist veröffentlicht** (Logo auf 360er-Raster) — auf GitHub und auf
-Packagist (Hook zieht sofort nach). Die Testinstallation läuft noch auf v1.0.1,
-das den Fix für die Überschriftfarbe gegen Theme-Regeln enthält; das Logo ist im
-Frontend nicht sichtbar, ein Update dort ist optional.
+**v1.0.2 ist veröffentlicht** (Logo auf 360er-Raster), auf GitHub und Packagist.
+Die Testinstallation läuft auf v1.0.1 aus Packagist; ein Update ist optional,
+da sich nur das Logo geändert hat.
 
-Der Metadaten-Eintrag für den Contao Manager liegt als Pull Request
-contao/package-metadata#788 vor, Linter grün, wartet auf die Maintainer. Erst
-nach dem Merge zeigt der Manager Logo, Titel und Beschreibung.
+Metadaten-PR contao/package-metadata#788 enthält das neue Logo, Linter grün,
+wartet auf die Maintainer. Nächster Schritt: Merge abwarten und dann im Contao
+Manager Logo, Titel und Beschreibung prüfen (TODO 9). Übrige TODO-Punkte ohne
+Termindruck.
 
-Kein konkreter nächster Schritt offen. Die neun Punkte in TODO.md sind
-Verbesserungen ohne Termindruck; der einzige, der von aussen abhängt, ist das
-Verfolgen des PR. Die Testinstallation auf `img-navi.tonsinn.de` läuft auf
-`^1.0` aus Packagist — sie ist bewusst NICHT mehr an das Path-Repository
-gebunden, siehe HINWEISE.md.
-
-Details: siehe CHANGELOG.md, Teil 3. Offene Punkte: siehe TODO.md.
+Details: siehe CHANGELOG.md, Teil 4. Offene Punkte: siehe TODO.md.
 
 ---
 

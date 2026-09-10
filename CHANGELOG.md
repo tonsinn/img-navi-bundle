@@ -298,6 +298,37 @@ nicht nur im zuvor handgepatchten `vendor/`-Verzeichnis.
 - **Erst v1.0.1, als etwas Inhaltliches anstand.** Keyword und Logo allein
   waren kein Release wert; zusammen mit dem Fix schon.
 
+
+---
+
+## Aktueller Stand (10.09.2026, Teil 4)
+
+Das Logo war auf 13 px ausgelegt (`viewBox 0 0 64 64`, Striche mit 4,7 % der
+Kantenlänge). Hochskaliert auf 360 px wirkten die Striche klobig, und ein
+Vorschau-Vergleich zeigte, dass der Button unten links den Rahmen überlappte —
+bei 13 px unsichtbar. Es wurde auf einem 360er-Raster neu gezeichnet: 10er-Strich
+und zusätzlich ein Bildmotiv (Berg und Sonne) im geöffneten Panel, das erst bei
+dieser Größe lesbar ist. Geprüft im Vergleich bei 360, 64 und 32 px.
+
+Die neue Datei ging in den noch offenen Metadaten-PR #788 (zweiter Commit,
+Linter erneut grün) und ins Bundle als Release v1.0.2; Packagist zog nach etwa
+20 Sekunden nach. Die Testinstallation bleibt auf v1.0.1, weil das Logo im
+Frontend nicht erscheint.
+
+### Geänderte/erstellte Dateien — Session 10.09.2026 (Teil 4)
+- `public/img-navi.svg` — 360er-Raster, 554 Bytes
+- `CHANGELOG.md` — Abschnitt v1.0.2
+- `CLAUDE.md`, `HINWEISE.md`, `TODO.md` — Pflege
+- ausserhalb: `~/package-metadata` Branch `add-tonsinn-img-navi-bundle`
+  (Commit `ee3f5d6`), `Desktop/img-navi.svg`
+
+### Entscheidung — Teil 4
+- **Neu zeichnen statt nur `width/height` ändern.** SVG skaliert verlustfrei,
+  aber Proportionen und Detailgrad waren auf Winzgröße abgestimmt.
+- **PR aktualisieren, solange er offen ist** — nach dem Merge wäre ein zweiter
+  PR nötig gewesen.
+- **Sofort v1.0.2** auf Wunsch, obwohl nur ein Logo betroffen ist.
+
 ## Abgeschlossene Punkte (Archiv)
 
 - ~~Bundle-Konzept definieren~~ erledigt (Teil 1, siehe `docs/vorbild.md`)
@@ -309,3 +340,4 @@ nicht nur im zuvor handgepatchten `vendor/`-Verzeichnis.
 - ~~Release veröffentlichen (GitHub, Tag, Packagist)~~ erledigt (Teil 2)
 - ~~Keyword `bildnavigation` und Logo-Austausch~~ erledigt (mit v1.0.1)
 - ~~Metadaten-Eintrag für den Contao Manager (Logo, de/en, PR #788)~~ erledigt (Teil 3)
+- ~~Logo für 360×360 optimieren~~ erledigt (Teil 4)
