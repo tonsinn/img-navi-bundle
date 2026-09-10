@@ -86,9 +86,10 @@ Die drei häufigsten Stolpersteine:
 
 ## Letzter Stand
 
-**v1.0.1 ist veröffentlicht** — auf GitHub, auf Packagist (Hook zieht sofort
-nach) und in der Testinstallation installiert. Enthält den Fix, dass die im
-Backend gewählte Überschriftfarbe sich gegen Theme-Regeln durchsetzt.
+**v1.0.2 ist veröffentlicht** (Logo auf 360er-Raster) — auf GitHub und auf
+Packagist (Hook zieht sofort nach). Die Testinstallation läuft noch auf v1.0.1,
+das den Fix für die Überschriftfarbe gegen Theme-Regeln enthält; das Logo ist im
+Frontend nicht sichtbar, ein Update dort ist optional.
 
 Der Metadaten-Eintrag für den Contao Manager liegt als Pull Request
 contao/package-metadata#788 vor, Linter grün, wartet auf die Maintainer. Erst

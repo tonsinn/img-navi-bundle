@@ -1,5 +1,13 @@
 # Changelog
 
+### v1.0.2 (10.09.2026)
+
+#### Sonstiges
+- Logo (`public/img-navi.svg`) auf ein 360×360-Raster neu gezeichnet: feinere
+  Striche und ein Bildmotiv im geöffneten Panel. Die bisherige Fassung war auf
+  13 px ausgelegt; hochskaliert wirkten die Striche klobig, und der Button
+  überlappte den Rahmen.
+
 ### v1.0.1 (09.09.2026)
 
 #### Behoben
