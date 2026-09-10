@@ -86,16 +86,16 @@ Die drei häufigsten Stolpersteine:
 
 ## Letzter Stand
 
-**v1.0.2 ist veröffentlicht** (Logo auf 360er-Raster), auf GitHub und Packagist.
-Die Testinstallation läuft auf v1.0.1 aus Packagist; ein Update ist optional,
-da sich nur das Logo geändert hat.
+**v1.0.2 ist veröffentlicht**, auf GitHub und Packagist; die Testinstallation
+läuft auf v1.0.1 (Update optional, nur das Logo unterscheidet sich). README und
+Doku enthalten keine Verweise mehr auf die Vorlage-Website.
 
 Metadaten-PR contao/package-metadata#788 enthält das neue Logo, Linter grün,
 wartet auf die Maintainer. Nächster Schritt: Merge abwarten und dann im Contao
 Manager Logo, Titel und Beschreibung prüfen (TODO 9). Übrige TODO-Punkte ohne
 Termindruck.
 
-Details: siehe CHANGELOG.md, Teil 4. Offene Punkte: siehe TODO.md.
+Details: siehe CHANGELOG.md, Teil 5. Offene Punkte: siehe TODO.md.
 
 ---
 

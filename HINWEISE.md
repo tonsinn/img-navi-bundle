@@ -95,6 +95,14 @@ in CHANGELOG.md, offene Aufgaben in TODO.md.
   Zielgröße ab. `public/img-navi.svg` und `logo.svg` im Metadaten-Repo sind
   identisch zu halten.
 
+## Veröffentlichte Texte
+
+- **Die Website, die als Vorlage diente, wird nirgends genannt** — weder in
+  README, Doku, CHANGELOG, Commit-Nachrichten noch Paket-Metadaten. Bei
+  Bedarf neutral von „der Vorlage“ sprechen. Ältere Stände in der Git-Historie
+  enthalten den Verweis noch; die veröffentlichte Historie wird deshalb nicht
+  umgeschrieben (Tags ab v1.0.0 sind in Gebrauch).
+
 ## Templates
 
 - **Twig-Kommentare dürfen nicht innerhalb eines Tags stehen.** `{# … #}` mitten

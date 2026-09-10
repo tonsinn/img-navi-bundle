@@ -329,6 +329,33 @@ Frontend nicht erscheint.
   PR nötig gewesen.
 - **Sofort v1.0.2** auf Wunsch, obwohl nur ein Logo betroffen ist.
 
+
+---
+
+## Aktueller Stand (10.09.2026, Teil 5)
+
+Auf Wunsch wurden alle Hinweise auf die Website entfernt, die als Vorlage für
+die Animation diente. Die README-Einleitung ist neu gefasst und nennt jetzt
+Contao 5 und 6, die Überschrift heißt „Contao Bildnavigation“; in
+`docs/vorbild.md` sind Quellenangabe und URL entfernt. Eine Suche über das Repo
+findet keinen Verweis mehr.
+
+Bestehen bleibt der Verweis in der veröffentlichten Git-Historie (ältere Stände
+von README und `docs/vorbild.md`) sowie lokal in `.claude/settings.local.json`,
+die nicht versioniert ist.
+
+### Geänderte/erstellte Dateien — Session 10.09.2026 (Teil 5)
+- `README.md` — Einleitung und Überschrift ohne Website-Verweis
+- `docs/vorbild.md` — Quellenangabe entfernt, Überschrift neutral
+- `HINWEISE.md`, `CLAUDE.md` — Pflege
+
+### Entscheidung — Teil 5
+- **Git-Historie nicht umgeschrieben.** Das hätte ein Verschieben der
+  veröffentlichten Tags v1.0.0 bis v1.0.2 erfordert, auf die Packagist und
+  bestehende Installationen angewiesen sind.
+- **Dateiname `docs/vorbild.md` beibehalten**, weil CLAUDE.md und die
+  CHANGELOG-Historie darauf verweisen; der Name nennt die Website nicht.
+
 ## Abgeschlossene Punkte (Archiv)
 
 - ~~Bundle-Konzept definieren~~ erledigt (Teil 1, siehe `docs/vorbild.md`)
@@ -341,3 +368,4 @@ Frontend nicht erscheint.
 - ~~Keyword `bildnavigation` und Logo-Austausch~~ erledigt (mit v1.0.1)
 - ~~Metadaten-Eintrag für den Contao Manager (Logo, de/en, PR #788)~~ erledigt (Teil 3)
 - ~~Logo für 360×360 optimieren~~ erledigt (Teil 4)
+- ~~Website-Verweise aus README und Doku entfernen~~ erledigt (Teil 5)
