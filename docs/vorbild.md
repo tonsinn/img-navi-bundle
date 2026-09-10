@@ -1,6 +1,5 @@
-# Vorbild-Analyse: Vertikale Bilder-Navigation
+# Analyse: Bildnavigation
 
-**Quelle:** https://www.vr-rheinahreifel.de/startseite.html  
 **Element:** Vertikale Accordion-Image-Navigation (4 Panels, oberhalb des Folds)
 
 ---

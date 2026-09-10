@@ -1,7 +1,6 @@
-# Contao 5 Bildnavigation (img-navi-bundle)
+# Contao Bildnavigation (img-navi-bundle)
 
-Animierte Bildnavigation für Contao 5 nach dem Vorbild von
-[vr-rheinahreifel.de](https://www.vr-rheinahreifel.de): mehrere Bild-Panels liegen
+Animierte Bildnavigation für Contao 5 und 6: mehrere Bild-Panels liegen
 nebeneinander, das angesteuerte Panel klappt auf und zeigt Überschrift, Kurztext
 und einen Button.
 
