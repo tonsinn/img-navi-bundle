@@ -25,3 +25,11 @@ Erledigte Punkte stehen im Archiv am Ende von CHANGELOG.md.
 9. **Metadaten-PR ist gemerged** (contao/package-metadata#788, Commit
    `f47c134`, 10.09.2026, in `upstream/main`). Offen: im Contao Manager
    prüfen, ob Logo, Titel und Beschreibung erscheinen.
+10. **„Mehr"-Link (Projektwebsite) im Contao Manager gegenprüfen.** Seit v1.0.3
+    steht `homepage` in `composer.json` und ist auf Packagist sichtbar; der
+    Contao Manager speist den „Mehr"-Link im Detail-Popup aber aus einem
+    eigenen Index unter `extensions.contao.org` (nicht direkt aus Packagist),
+    der Stand 17.09.2026 noch v1.0.2 zeigt (`homepage` dort leer,
+    `support.source` zeigt auf `.../tree/v1.0.2`). Prüfen:
+    `curl -s "https://extensions.contao.org/api.php/p/tonsinn/img-navi-bundle"`
+    — sobald `homepage` dort gefüllt ist, im Contao Manager gegenkontrollieren.
