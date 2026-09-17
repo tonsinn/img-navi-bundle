@@ -1,5 +1,14 @@
 # Changelog
 
+### v1.0.3 (17.09.2026)
+
+#### Sonstiges
+- `composer.json`: `homepage`-Feld auf `https://img-navi.tonsinn.de` gesetzt,
+  damit Packagist und der Contao Manager unter „Mehr" einen Link zur
+  Projekt-Website zeigen
+- README auf Englisch ergänzt (`README.en.md`), beide Sprachversionen
+  verlinken sich gegenseitig
+
 ### v1.0.2 (10.09.2026)
 
 #### Sonstiges
