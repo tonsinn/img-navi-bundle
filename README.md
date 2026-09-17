@@ -1,5 +1,7 @@
 # Contao Bildnavigation (img-navi-bundle)
 
+*Deutsch | [English](README.en.md)*
+
 Animierte Bildnavigation für Contao 5 und 6: mehrere Bild-Panels liegen
 nebeneinander, das angesteuerte Panel klappt auf und zeigt Überschrift, Kurztext
 und einen Button.
