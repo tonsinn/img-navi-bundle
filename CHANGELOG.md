@@ -395,3 +395,7 @@ gegenseitig über einen Sprachumschalter direkt unter der Überschrift.
 - ~~Metadaten-Eintrag für den Contao Manager (Logo, de/en, PR #788)~~ erledigt (Teil 3)
 - ~~Logo für 360×360 optimieren~~ erledigt (Teil 4)
 - ~~Website-Verweise aus README und Doku entfernen~~ erledigt (Teil 5)
+- ~~Metadaten-PR #788 gemerged, Logo/Titel/Beschreibung im Contao Manager
+  bestätigt~~ erledigt (Teil 6)
+- ~~Homepage-Link (`composer.json`, v1.0.3) im Contao Manager als
+  „Projektwebsite" unter „Mehr" bestätigt~~ erledigt (Teil 6)
