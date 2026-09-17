@@ -356,6 +356,23 @@ die nicht versioniert ist.
 - **Dateiname `docs/vorbild.md` beibehalten**, weil CLAUDE.md und die
   CHANGELOG-Historie darauf verweisen; der Name nennt die Website nicht.
 
+## Aktueller Stand (17.09.2026, Teil 6)
+
+Auf Wunsch wurde eine englische README ergänzt: `README.en.md` ist eine
+vollständige Übersetzung von `README.md`, beide Dateien verlinken sich
+gegenseitig über einen Sprachumschalter direkt unter der Überschrift.
+
+### Geänderte/erstellte Dateien — Session 17.09.2026 (Teil 6)
+- `README.en.md` — neu, vollständige englische Übersetzung
+- `README.md` — Sprachumschalter-Link ergänzt
+
+### Entscheidung — Teil 6
+- **README jetzt zweisprachig, Backend-Labels bleiben deutsch.** Widerruft die
+  Entscheidung aus Teil 2 („README und Backend-Labels deutsch"): Packagist und
+  GitHub haben doch ein internationales Publikum, das von einer englischen
+  README profitiert; die Redaktionsoberfläche (DCA-Labels, XLIFF) bleibt davon
+  unberührt und weiterhin deutsch.
+
 ## Abgeschlossene Punkte (Archiv)
 
 - ~~Bundle-Konzept definieren~~ erledigt (Teil 1, siehe `docs/vorbild.md`)
