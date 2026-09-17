@@ -2,6 +2,7 @@
     "name": "tonsinn/img-navi-bundle",
     "type": "contao-bundle",
     "description": "Animated image navigation for Contao 5 and 6 - 2 to 6 image panels that expand on hover or tap to reveal a headline, text and a call-to-action button.",
+    "homepage": "https://img-navi.tonsinn.de",
     "keywords": [
         "contao",
         "contao-bundle",
